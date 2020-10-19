@@ -38,21 +38,6 @@ class Topice extends Model
         return $this->belongsTo('App\Category');
     }
 
-    public function province()
-    {
-        return $this->belongsTo('App\City','province','id');
-    }
-
-    public function city()
-    {
-        return $this->belongsTo('App\City','city','id');
-    }
-
-    public function county()
-    {
-        return $this->belongsTo('App\City','county','id');
-    }
-
     public function scopeWithOrder($query,$order)
     {
         switch ($order) {
