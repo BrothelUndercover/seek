@@ -18,14 +18,8 @@ class TopiceController extends BaseController
     public function index(Request $request,Topice $topice)
     {
         $topices = QueryBuilder::for(Topice::class)
-            ->allowedIncludes('user','category','city')
+            ->allowedIncludes('user','category')
             ->allowedFilters([
-                'province',
-                'city',
-                'county',
-                'province',
-                'city',
-                'county',
                 AllowedFilter::exact('category_id'),
                 AllowedFilter::exact('user_id'),
                 AllowedFilter::scope('withOrder')->default('new'),
