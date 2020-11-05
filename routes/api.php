@@ -21,7 +21,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
     'namespace'     => 'App\Http\Controllers\Api',
-    // 'middleware'    => ['']
+    'middleware'    => ['cors'],
 ],function($api) {
     $api->get('getCaptcha',"CaptchaController@captcha");
     $api->post('register','UserController@register');
