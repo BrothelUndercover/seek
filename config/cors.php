@@ -21,7 +21,7 @@ return [
      * You can enable CORS for 1 or multiple paths.
      * Example: ['api/*']
      */
-    'paths' => [],
+    'paths' => ["*"],
 
     /*
     * Matches the request method. `['*']` allows all methods.
@@ -31,7 +31,7 @@ return [
     /*
      * Matches the request origin. `['*']` allows all origins. Wildcards can be used, eg `*.mydomain.com`
      */
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['http://localhost:8080','http://10.9.6.154:8080'],
 
     /*
      * Patterns that can be used with `preg_match` to match the origin.
@@ -56,5 +56,5 @@ return [
     /*
      * Sets the Access-Control-Allow-Credentials header.
      */
-    'supports_credentials' => false,
+    'supports_credentials' => true,
 ];
