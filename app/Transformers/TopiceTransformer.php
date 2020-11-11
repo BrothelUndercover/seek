@@ -52,16 +52,16 @@ class TopiceTransformer extends TransformerAbstract
 
     public function includeProvinces(Topice $topice)
     {
-        return $this->item($topice->proviArea,new CityTransformer());
+        return $this->item($topice->provinces,new CityTransformer());
     }
 
     public function includeCities(Topice $topice)
     {
-        return $this->item($topice->cityArea,new CityTransformer());
+        return $this->item($topice->cities,new CityTransformer());
     }
 
     public function includeCounties(Topice $topice)
     {
-        return $this->item($topice->countyArea, new CityTransformer());
+        return $this->item($topice->counties, new CityTransformer());
     }
 }
