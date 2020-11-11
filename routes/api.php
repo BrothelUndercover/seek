@@ -28,7 +28,7 @@ $api->version('v1', [
     $api->post('login','AuthController@login');
     $api->post('logout','AuthController@logout');
     $api->post('refresh','AuthController@refresh');
-    $api->get('me','UserController@user');
+    $api->get('me','UserController@me');
     $api->get('categories','CategoriesController@index')->name('categories.index');
     // $api->get('topices','TopiceController@index')->name('topices.index'); //帖子列表
     $api->resource('topices','TopiceController');
