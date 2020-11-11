@@ -18,7 +18,8 @@ class TopiceController extends BaseController
     //帖子列表
     public function index(Request $request,Topice $topice)
     {
-        $topices = $topice->scope('withOrder')->default('new')->paginate();
+        $order = $request->order ?? 'default';
+        $topices = $topice->withOrder($order)->paginate();
 
         return $this->response->paginator($topices, new TopiceTransformer());
     }
