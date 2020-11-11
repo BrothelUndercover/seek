@@ -15,6 +15,6 @@ class CaptchaController extends BaseController
     {
         $captcha = app('captcha')->create('flat',true);
 
-        return $this->response->array(['data'=> ['sensitive'=> $captcha->sensitive,'key'=> $captcha->key,'img'=>$captcha->img]]);
+        return $this->response->array(['data'=> ['sensitive'=> $captcha['sensitive'],'key'=> $captcha['key'],'img'=>$captcha['img']]);
     }
 }
