@@ -13,8 +13,8 @@ class CaptchaController extends BaseController
      */
     public function captcha()
     {
-        $data = app('captcha')->create('flat',true);
-        return $this->response->array($data);
-        // Cache::forget($request->captcha_key);
+        $captcha = app('captcha')->create('flat',true);
+
+        return $this->response->array(['data'=> ['sensitive'=> $captcha->sensitive,'key'=> $captcha->key,'img'=>$captcha->img]]);
     }
 }
