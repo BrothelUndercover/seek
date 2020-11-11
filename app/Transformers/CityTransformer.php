@@ -13,7 +13,7 @@ class CityTransformer extends TransformerAbstract
             'id' => (int) $city->id,
             'pid' => (int) $city->pid,
             'name' => (string) $city->name,
-            'spell' => (string )$user->spell,
+            'spell' => (string )$city->spell,
             'initial' => $city->initial,
             'hot'       => (bool) $city->hot,
         ];

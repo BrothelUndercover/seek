@@ -13,7 +13,7 @@ class CategoryTransformer extends TransformerAbstract
             'id' => (int) $category->id,
             'name' => $category->name,
             'icon' => $category->icon,
-            'description' => $user->description,
+            'description' => $category->description
         ];
     }
 }
