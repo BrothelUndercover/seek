@@ -7,7 +7,6 @@ use League\Fractal\TransformerAbstract;
 use App\Transformers\UserTransformer;
 use App\Transformers\CategoryTransformer;
 use App\Transformers\CityTransformer;
-use App\Topice;
 
 class TopiceTransformer extends TransformerAbstract
 {
