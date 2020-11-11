@@ -43,6 +43,6 @@ class UserController extends BaseController
 
     public function user(UserTransformer $transformer)
     {
-        return $this->response->array(auth('api')->user(),$transformer);
+        return $this->response->item(auth('api')->user(),$transformer);
     }
 }
