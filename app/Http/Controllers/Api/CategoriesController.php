@@ -5,13 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\BaseController;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Transformers/CategoryTransformer;
 
 class CategoriesController extends BaseController
 {
-    public function index()
+    public function index(CategoryTransformer $transformer)
     {
-        $categories = Category::where('status',true)->get();
-
-        return $this->response->array($categories->toArray());
+        return $this->response->item(Category::where('status',true)->all(),$transformer);
     }
 }

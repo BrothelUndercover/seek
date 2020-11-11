@@ -74,4 +74,20 @@ class Topice extends Model
     {
 
     }
+
+    public function proviArea($foreign_key = null,$other_key = null)
+    {
+        return $this->belongsTo('App\City','province',$other_key);
+    }
+
+    public function cityArea()
+    {
+        return $this->belongsTo('App\City','city');
+    }
+
+    public function countyArea()
+    {
+        return $this->belongsTo('App\City','county');
+    }
+
 }
