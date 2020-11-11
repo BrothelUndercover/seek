@@ -75,17 +75,17 @@ class Topice extends Model
 
     }
 
-    public function proviArea($foreign_key = null,$other_key = null)
+    public function provinces($foreign_key = null,$other_key = null)
     {
         return $this->belongsTo('App\City','province',$other_key);
     }
 
-    public function cityArea()
+    public function cities()
     {
         return $this->belongsTo('App\City','city');
     }
 
-    public function countyArea()
+    public function counties()
     {
         return $this->belongsTo('App\City','county');
     }

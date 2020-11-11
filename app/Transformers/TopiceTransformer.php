@@ -10,7 +10,7 @@ use App\Transformers\CityTransformer;
 
 class TopiceTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = ['user','category','province','city','county'];
+    protected $availableIncludes = ['user','category','provinces','cities','counties'];
 
     public function transform(Topice $topice)
     {
@@ -50,17 +50,17 @@ class TopiceTransformer extends TransformerAbstract
         return $this->item($topice->category,new CategoryTransformer());
     }
 
-    public function includeProvince(Topice $topice)
+    public function includeProvinces(Topice $topice)
     {
         return $this->item($topice->proviArea,new CityTransformer());
     }
 
-    public function includeCity(Topice $topice)
+    public function includeCities(Topice $topice)
     {
         return $this->item($topice->cityArea,new CityTransformer());
     }
 
-    public function includeCounty(Topice $topice)
+    public function includeCounties(Topice $topice)
     {
         return $this->item($topice->countyArea, new CityTransformer());
     }
