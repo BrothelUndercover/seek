@@ -103,4 +103,20 @@ class Topice extends Model
     {
         return $this->belongsToMany('App\Tab','topice_tab');
     }
+
+    public function provinces($foreign_key = null,$other_key = null)
+    {
+        return $this->belongsTo('App\City','province',$other_key);
+    }
+
+    public function cities()
+    {
+        return $this->belongsTo('App\City','city');
+    }
+
+    public function counties()
+    {
+        return $this->belongsTo('App\City','county');
+    }
+
 }

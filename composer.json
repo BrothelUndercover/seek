@@ -14,6 +14,7 @@
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
         "jaeger/querylist": "~V4",
+        "fruitcake/laravel-cors": "^2.0",
         "james.xue/login-captcha": "^2.0",
         "laravel-admin-ext/simplemde": "^1.0",
         "laravel-lang/lang": "~5.0",

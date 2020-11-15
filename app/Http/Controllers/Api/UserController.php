@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\BaseController;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\UserRequest;
+use App\Transformers\UserTransformer;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\User;
@@ -40,8 +41,8 @@ class UserController extends BaseController
         return $this->response->created($user);
     }
 
-    public function user()
+    public function me(UserTransformer $transformer)
     {
-        return $this->response->array(auth('api')->user()->toArray());
+        return $this->response->item(auth('api')->user(),$transformer);
     }
 }

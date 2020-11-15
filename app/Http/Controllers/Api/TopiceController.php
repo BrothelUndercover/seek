@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\BaseController;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Illuminate\Http\Request;
+use App\Transformers\TopiceTransformer;
 use App\Topice;
 
 class TopiceController extends BaseController
@@ -17,16 +18,10 @@ class TopiceController extends BaseController
     //帖子列表
     public function index(Request $request,Topice $topice)
     {
-        $topices = QueryBuilder::for(Topice::class)
-            ->allowedIncludes('user','category')
-            ->allowedFilters([
-                AllowedFilter::exact('category_id'),
-                AllowedFilter::exact('user_id'),
-                AllowedFilter::scope('withOrder')->default('new'),
-            ])
-            ->paginate();
+        $order = $request->order ?? 'default';
+        $topices = $topice->withOrder($order)->paginate();
 
-        return $this->response->array($topices->toArray());
+        return $this->response->paginator($topices, new TopiceTransformer());
     }
 
     //帖子发布
