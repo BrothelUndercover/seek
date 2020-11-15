@@ -42,6 +42,6 @@ class UserController extends BaseController
 
     public function user()
     {
-        return $this->response->array(auth('api')->user());
+        return $this->response->array(auth('api')->user()->toArray());
     }
 }

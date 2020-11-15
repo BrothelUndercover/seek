@@ -38,6 +38,11 @@ class Topice extends Model
         return $this->belongsTo('App\Category');
     }
 
+    public function replies()
+    {
+        return $this->hasMany('App\Reply');
+    }
+
     public function scopeWithOrder($query,$order)
     {
         switch ($order) {
@@ -70,8 +75,32 @@ class Topice extends Model
         return $query->orderBy('created_at','desc');
     }
 
-    public function search($query,$keyword)
+    public function proviArea($foreign_key = null,$other_key = null)
     {
+        return $this->belongsTo('App\City','province',$other_key);
+    }
 
+    public function cityArea()
+    {
+        return $this->belongsTo('App\City','city');
+    }
+
+    public function countyArea()
+    {
+        return $this->belongsTo('App\City','county');
+    }
+
+    public function scopeSearch($query,$keyword)
+    {
+        return $query->where('title','like',"%$keyword%")
+                ->orWhere('excerpt','like',"%$keyword%")
+                ->orWhere('body','like',"%$keyword%")
+                ->orWhere('ser_project','like','%$keyword%')
+                ->latest();
+    }
+
+    public function tabs()
+    {
+        return $this->belongsToMany('App\Tab','topice_tab');
     }
 }

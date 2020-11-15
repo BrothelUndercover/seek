@@ -1,1 +1,23 @@
-//
+// Variables
+@import 'variables';
+
+//VIP
+.blockdown{
+    padding: 10px;
+    border: 2px dashed #ff5f33;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.erphpdown-vip {
+    display: inline-block;
+    margin-left: 6px;
+    border-radius: 2px;
+    background: #ff5f33;
+    color: #fff !important;
+    padding: 5px 12px;
+    text-decoration: none !important;
+    font-size: 13px;
+    line-height: 1;
+    border-radius: 20px;
+}

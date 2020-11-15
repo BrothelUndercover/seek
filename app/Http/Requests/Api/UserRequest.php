@@ -28,8 +28,8 @@ class UserRequest extends FormRequest
             'name' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name',
             'email' => 'required|email|unique:users',
             'password' => 'required|alpha_dash|min:6',
-            // 'captcha'   => 'required',
-            // 'key'       => 'required'
+            'captcha'   => 'required',
+            'key'       => 'required'
         ];
     }
 
@@ -44,8 +44,8 @@ class UserRequest extends FormRequest
             'email.unique:users'    => '邮箱已存在',
             'password.required'     => '密码不能为空',
             'password.min:6'        => '密码不能小于6位数',
-            // 'captcha.required'      => '图形验证码不为空!',
-            // 'key.required'          => 'key不为空'
+            'captcha.required'      => '图形验证码不为空!',
+            'key.required'          => 'key不为空'
         ];
     }
 }
