@@ -28,7 +28,7 @@
                         <span class="unit">信息分享 <i class="fa fa-angle-right"></i></span>
                     </div>
                     <div class="info-content">
-                        <a href="{{ route('topices.create') }}" class="btn btn-success">发布</a>
+                        <a href="{{ route('topices.create',['provi'=>$area->id]) }}" class="btn btn-success">发布</a>
                     </div>
                 </div>
                 <div class="desc">
@@ -91,7 +91,7 @@
                         <div class="new-content">
                             <a href="{{ route('topices.show',[$topice->id])}}" class="title">{{ $topice->title }}</a>
                             <div class="flex_img">
-                                <p>{{ $topice->body }}</p>
+                                <p>{!! $topice->body !!}</p>
                                 <p>分类：</p>
                             </div>
                             <div class="tool">
@@ -114,7 +114,7 @@
     <!-- 侧边专区 -->
     <div class="con_right">
         <div class="list-group list_box border_con">
-            @include('topices._hot',['hotTopices'=> $topice->withOrder('ishot')->take(30)->get()])
+            @include('topices._hot',['hotTopices'=> $topice->withOrder('ishot')->take(20)->get()])
         </div>
     </div>
 </div>

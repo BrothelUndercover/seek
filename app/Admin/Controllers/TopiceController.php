@@ -29,11 +29,13 @@ class TopiceController extends AdminController
     {
         $grid = new Grid(new Topice());
 
-        $grid->quickSearch('title','excerpt','ser_project','city','county','province');
+        $grid->quickSearch('title','excerpt','city','county','province');
         // $grid->fixColumns(3);
         $grid->column('id', __('序号'))->sortable();
         $grid->column('title', __('标题'));
-        $grid->column('excerpt', __('摘要'));
+        $grid->column('excerpt', __('摘要'))->display(function($excerpt){
+            return \Str::limit($excerpt,10);
+        });
         $grid->column('province', __('省'))->display(function ($provinceid) {
             return City::find($provinceid)->name;
         });
@@ -43,7 +45,6 @@ class TopiceController extends AdminController
         $grid->column('county', __('县/区'))->display(function ($countyid) {
             return City::find($countyid)->name;
         });
-        $grid->column('ser_project', __('服务项目'));
         $grid->column('contact', __('联系'));
         $grid->column('consumer_price', __('消费介绍'));
         $grid->column('body', __('具体描述'))->hide();
@@ -53,7 +54,6 @@ class TopiceController extends AdminController
         $grid->column('category_id', __('分类'))->display(function ($catid) {
             return Category::find($catid)->name;
         });
-        $grid->column('pictures', __('照片集'))->carousel(100,60);
         $grid->column('view_count', __('浏览量'));
         $grid->column('order', __('排序'))->editable();
         $grid->column('is_hot', __('是否热点'))->switch();
@@ -93,9 +93,9 @@ class TopiceController extends AdminController
         $show->field('county', __('县/区'))->as(function($countyid){
             return City::find($countyid)->name;
         });
-        $show->field('ser_project', __('服务项目'));
         $show->field('contact', __('联系'));
         $show->field('consumer_price', __('价格详情'));
+        $show->field('contact_address', __('联系地址'));
         $show->field('body', __('Body'))->unescape()->as(function ($content) {
             return "<pre>{$content}</pre>";
         });
@@ -105,7 +105,7 @@ class TopiceController extends AdminController
         $show->field('category_id', __('分类'))->as(function($catid){
             return City::find($catid)->name;
         });
-        $show->field('pictures', __('图片'))->carousel();
+        $show->field('picture', __('封面'));
         $show->field('view_count', __('浏览量'));
         $show->field('order', __('排序'));
         $show->field('is_hot', __('是否热点'))->using(['1' => '是', '0' => '否']);
@@ -138,14 +138,15 @@ class TopiceController extends AdminController
         $form->select('county','县/区')->options(function($id){
             return City::where('id',$id)->pluck('name','id');
         })->rules('required');
-        $form->text('ser_project', __('服务项目'));
         $form->text('contact', __('联系'));
+        $form->text('contact_address', __('联系地址'));
         $form->text('consumer_price', __('消费介绍'));
         $form->number('order', __('排序'))->default(0);
         $form->radio('is_hot', __('是否热点'))->options([0 => '否', 1=> '是'])->default(1);
         $form->number('rating', __('星级好评'))->default(10);
         $form->simplemde('body', __('具体描述'))->height(300);
-        $form->multipleImage('pictures', __('照片集'))->sortable()->removable();
+        // $form->image('picture', __('封面'))->sortable()->removable();
+        // $form->multipleImage('pictures', __('照片集'))->sortable()->removable();
 
         return $form;
     }

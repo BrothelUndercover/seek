@@ -17,4 +17,6 @@ Route::group([
     $router->resource('membership', MemberShipController::class);
     $router->resource('categories', CategoryController::class);
     $router->resource('topices', TopiceController::class);
+    $router->resource('tabs', TabController::class);
+    $router->resource('carousels', CarouselController::class);
 });

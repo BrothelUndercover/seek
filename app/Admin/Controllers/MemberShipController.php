@@ -30,6 +30,7 @@ class MemberShipController extends AdminController
         $grid->column('viptype_name', __('会员类型'));
         $grid->column('price', __('价格(元)'));
         $grid->column('description', __('描述'));
+        $grid->column('cardurl', __('发卡地址'))->editable();
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('更新时间'));
 
@@ -47,7 +48,8 @@ class MemberShipController extends AdminController
         $form = new Form(new Membership());
 
         $form->text('viptype_name', __('会员类型'));
-        $form->decimal('price', __('Price'))->default(0.00);
+        $form->decimal('price', __('价格'))->default(0.00);
+        $form->decimal('cardurl', __('发卡地址'));
         $form->text('description', __('描述'));
 
         return $form;

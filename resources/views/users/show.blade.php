@@ -43,10 +43,28 @@
 @endsection
 @section('scripts')
 <script>
-    $(function(){
+    $(document).ready(function(){
         if ($(window).width() > 760 ) {
             $('.footer').css({position:'fixed',bottom:'0',width:'100%'});
         }
-    });
+
+        var copyBtn = new Clipboardjs('#btncopy');
+        copyBtn.on("success", function (e) {
+            // 复制成功
+            layer.msg("复制成功");
+            e.clearSelection();
+        });
+        copyBtn.on("error", function (e) {
+            //复制失败；
+            layer.msg("复制失败");
+        });
+
+        $(".product-right input:radio").eq(0).attr('checked',true);
+        $('#btnpay').click(function(){
+            let cardurl = $(".product-right input:radio:checked").attr('cardurl');
+            $(this).css({background:'#ccc',disable:true})
+            window.location.href = cardurl
+        })
+    })
 </script>
 @endsection

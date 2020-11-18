@@ -4,13 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use App\Handlers\ImageUploadHandler;
+use App\Http\Requests\TopiceRequest;
 use App\Topice;
 use App\City;
 use App\Category;
-use App\Handlers\ImageUploadHandler;
+use App\Tab;
+use Auth;
 
 class TopicesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth',['create','store','uploadImage']);
+    }
+
     public function index(Request $request)
     {
         $areaSpell = $request->province;
@@ -41,14 +49,36 @@ class TopicesController extends Controller
     }
 
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('topices.create_and_edit');
+        $categories = Category::where('status',true)->get();
+        $provinces = City::where('pid',1)->get();
+        $tabs = Tab::where('status',true)->get();
+        $provin = $request->provi;
+        return view('topices.create_and_edit',compact('categories','provinces','tabs','provin'));
     }
 
-    public function store(Request $request)
+    public function store(TopiceRequest $request,Topice $topice)
     {
-        dd($request->all());
+
+        $topice = Topice::create([
+            'title' => $request->title,
+            'category_id' => $request->category_id,
+            'user_id'       => Auth::id(),
+            'province'  => $request->province,
+            'city'      => $request->city,
+            'county'    => $request->county,
+            'picture'  => $request->picture,
+            'consumer_price'    => $request->consumer_price,
+            'contact'   => $request->contact,
+            'contact_address'   => $request->contact_address,
+            'body'  => $request->body
+        ]);
+            if(! is_array($tabs = $request->tab_ids)){
+                $tabs = compact('tabs');
+            }
+            $topice->tabs()->sync($tabs,false);
+        return redirect()->to(route('pages.root'))->with('success','发布成功，等待审核');
     }
     public function search(Request $request,Topice $topice)
     {
@@ -73,7 +103,7 @@ class TopicesController extends Controller
                 $data['data']['msg'] = '只能不支持多图同时上传';
                 return response('','401')->json($data);
             }
-            $result = $uploader->save($request->tower_picture,'topices',\Auth::id(),300,400);
+            $result = $uploader->save($request->tower_picture,'topices',\Auth::id(),300,330);
             if ($result) {
                 $data['error'] = 0;
                 $data['data']['path'] = $result['path'];

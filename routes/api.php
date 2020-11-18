@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('province','CommonController@province');
-Route::get('city','CommonController@city');
-Route::get('county','CommonController@county');
+Route::get('province','CommonController@province')->name('getProvince');
+Route::get('city','CommonController@city')->name('getCity');
+Route::get('county','CommonController@county')->name('getCounty');
 
 $api = app('Dingo\Api\Routing\Router');
 

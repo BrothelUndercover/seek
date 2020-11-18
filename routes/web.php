@@ -19,7 +19,7 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 //帖子相关
-Route::get('topices/create','TopicesController@create')->name('topices.create');
+Route::get('topices/create/{provi?}','TopicesController@create')->name('topices.create');
 Route::get('topice/{province}/{category?}/{city?}/{county?}','TopicesController@index')->name('topices.index');
 Route::get('topices/{topice}','TopicesController@show')->name('topices.show');
 Route::post('topices','TopicesController@store')->name('topices.store');

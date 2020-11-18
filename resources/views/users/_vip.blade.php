@@ -39,50 +39,25 @@ height: 25px;
 <div class="bs-docs-section">
     <h1 class="page-header">VIP 充值</h1>
     <p style="margin-top:20px;font-size:18px;">
-        如果你已经支付成功，点击&nbsp;&nbsp;<a style="color:red;" href="MyOrder.html">查看我的订单>></a>
+        如果你已经支付成功，点击&nbsp;&nbsp;<a style="color:red;" href="">查看我的订单>></a>
     </p>
     <ul class="product-info">
+        @foreach($ships as $ship)
         <li>
             <div class="product-left">
-                <h3>月VIP ￥198</h3>
-                <p>VIP时长一月,购买信息打9折,赠送1000金币.</p>
+                <h3>{{ $ship->viptype_name }}</h3>
+                <p>{{ $ship->description }}</p>
             </div>
             <div class="product-right">
-                <input name="products" type="radio" data-id="6933" checked="checked">
+                <input name="products" cardurl="{{ $ship->cardurl }}" type="radio" data-id="{{ $ship->id }}">
             </div>
         </li>
-        <li>
-            <div class="product-left">
-                <h3>季VIP ￥298</h3>
-                <p>VIP时长三月,购买信息打8折,赠送4000金币.</p>
-            </div>
-            <div class="product-right">
-                <input name="products" type="radio" data-id="6934" checked="checked">
-            </div>
-        </li>
-        <li>
-            <div class="product-left">
-                <h3>年VIP ￥498</h3>
-                <p>VIP时长一年,购买信息打7折,赠送15000金币.</p>
-            </div>
-            <div class="product-right">
-                <input name="products" type="radio" data-id="6935" checked="checked">
-            </div>
-        </li>
-        <li>
-            <div class="product-left">
-                <h3>终身VIP ￥798</h3>
-                <p>VIP终身有效,浏览所有信息免费,无需购买.</p>
-            </div>
-            <div class="product-right">
-                <input name="products" type="radio" data-id="6936" checked="checked">
-            </div>
-        </li>
+        @endforeach
     </ul>
     <p class="lead" style="margin-top:10px;">
-        <button style="width:180px;" class="btn btn-info" id="btnpay">点击支付</button>
+        <button style="width:180px;" class="btn btn-info" id="btnpay">点击购买</button>
     </p>
     <p style="margin-top:20px;font-size:17px; color:red">
-        有问题请找客服，恶意投诉钱款不退，并封号! 客服邮箱：<a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="7d1b18131a1112081a183d1a101c1411531e1210">[email&#160;protected]</a>
+        有问题请找客服，恶意投诉钱款不退，并封号! 客服邮箱：<a href=""></a>
     </p>
 </div>

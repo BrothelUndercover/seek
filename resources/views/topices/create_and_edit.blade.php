@@ -6,30 +6,19 @@
 
 @endsection
 @section('content')
-{{--     <div class="container in_top index">
-        <div class="panel">
-            <div class="col-lg-11 col-sm-11 col-xs-11">
-                <p>发布真实小姐信息，经过审核后，管理员会根据您的信息内容质量在6种标准中给予金币奖励</p>
-                <p>当其他人查看您的信息一次，所扣的金币将反馈到您账户</p>
-                <p>金币的要求根据帖子内容的质量由管理员来决定。分别有5种信息标准标准【10金币 20金币 50金币 80金币 100金币】 </p>
-            </div>
-            <div id="editor-container" class="jumbotron content-lamp">
-
-            </div>
-        </div>
-    </div> --}}
     <div class="container re_top re_ttop">
         <div class="contact_right col-lg-12 col-sm-12 in_top">
             <div class="panel">
+
                 <div class="panel-heading re_to panel-recolor">
                     <span class="re_i col-lg-1 col-sm-1 col-xs-1">
                         <i class="fa fa-bullhorn" aria-hidden="true"></i>
                     </span>
-              {{--       <div class="col-lg-11 col-sm-11 col-xs-11">
+                    <div class="col-lg-11 col-sm-11 col-xs-11">
                         <p>发布真实小姐信息，经过审核后，管理员会根据您的信息内容质量在6种标准中给予金币奖励</p>
                         <p>当其他人查看您的信息一次，所扣的金币将反馈到您账户</p>
                         <p>金币的要求根据帖子内容的质量由管理员来决定。分别有5种信息标准标准【10金币 20金币 50金币 80金币 100金币】 </p>
-                    </div> --}}
+                    </div>
                 </div>
                 <div class="panel-body re_mar_left">
                     <form action="{{ route('topices.store') }}" class="form-horizontal" enctype="multipart/form-data"  method="POST">
@@ -37,66 +26,61 @@
                         <div class="form-group from_li">
                             <label class="col-sm-3 col-lg-2 control-label fromli_l"><b>*</b><span>标题:</span> </label>
                             <div class="col-sm-5 col-lg-5">
-                                <input type="text" class="form-control input_line" id="title" name="title" placeholder="标题信息">
+                                <input type="text" class="form-control input_line @error('title') is-invalid @enderror" value="{{ old('title') }}" id="title" name="title" placeholder="标题信息">
                             </div>
+                            @error('title')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong style="color:red;">{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group from_li">
                             <label class="col-sm-3 col-lg-2 control-label "><b>*</b><span>选择分类:</span> </label>
                             <div class="col-sm-5 col-lg-5 ">
-                                <select class="form-control from_sel" id="info_type" name="category_id">
-                                    <option value="1">111</option>
-                                    <option value="2">222</option>
-                                    <option value="3">333</option>
+                                <select class="form-control from_sel @error('category_id') is-invalid @enderror" id="info_type" name="category_id">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
+                             @error('category_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong style="color:red;">{{ $message }}</strong>
+                                </span>
+                              @enderror
                         </div>
                         <div class="form-group from_li">
                             <label class="col-sm-3 col-lg-2 control-label "><b>*</b><span>地区选择:</span> </label>
                             <div class="col-sm-2 col-lg-2 ">
                                 <select class="form-control from_sel" id="province" name="province">
-                                    <option value="1">北京</option>
-                                    <option value="2">天津</option>
-                                    <option value="3">河北</option>
-                                    <option value="4">山西</option>
-                                    <option value="5">内蒙古</option>
-                                    <option value="6">辽宁</option>
-                                    <option value="7">吉林</option>
-                                    <option value="8">黑龙江</option>
-                                    <option value="9">上海</option>
-                                    <option value="10">江苏</option>
-                                    <option value="11">浙江</option>
-                                    <option value="12">安徽</option>
-                                    <option value="13">福建</option>
-                                    <option value="14">江西</option>
-                                    <option value="15">山东</option>
-                                    <option value="16">河南</option>
-                                    <option value="17">湖北</option>
-                                    <option value="18">湖南</option>
-                                    <option value="19">广东</option>
-                                    <option value="20">广西</option>
-                                    <option value="21">海南</option>
-                                    <option value="22">重庆</option>
-                                    <option value="23">四川</option>
-                                    <option value="24">贵州</option>
-                                    <option value="25">云南</option>
-                                    <option value="26">西藏</option>
-                                    <option value="27">陕西</option>
-                                    <option value="28">甘肃</option>
-                                    <option value="29">青海</option>
-                                    <option value="30">宁夏</option>
-                                    <option value="31">新疆</option>
-                                    <option value="32">香港</option>
-                                    <option value="33">澳门</option>
-                                    <option value="34">台湾</option>
+                                    <option value="">请选择省份</option>
+                                    @foreach($provinces as $province)
+                                    <option @if($provin == $province->id) selected @endif value="{{ $province->id }}">{{ $province->name }}</option>
+                                    @endforeach
                                 </select>
+                                @error('province')
+                                   <span class="invalid-feedback" role="alert">
+                                       <strong style="color:red;">{{ $message }}</strong>
+                                   </span>
+                                 @enderror
                             </div>
                             <div class="col-sm-2 col-lg-2 ">
-                                <select class="form-control from_sel" id="city" name="city">
+                                <select class="form-control from_sel @error('city') is-invalid @enderror" id="city" name="city" >
                                 </select>
+                                @error('city')
+                                   <span class="invalid-feedback" role="alert">
+                                       <strong style="color:red;">{{ $message }}</strong>
+                                   </span>
+                                 @enderror
                             </div>
                             <div class="col-sm-3 col-lg-3">
-                                <select class="form-control from_sel" id="county" name="county">
+                                <select class="form-control from_sel @error('county') is-invalid @enderror"  id="county" name="county">
                                 </select>
+                                @error('city')
+                                   <span class="invalid-feedback" role="alert">
+                                       <strong style="color:red;">{{ $message }}</strong>
+                                   </span>
+                                 @enderror
                             </div>
                             <div class="col-sm-4 tips"></div>
                         </div>
@@ -105,47 +89,84 @@
                                 <b>*</b><span>消费情况:</span>
                             </label>
                             <div class="col-sm-5 col-lg-5 col-xs-12">
-                                <input type="text" class="form-control from_sel input_line" id="consumer_price" name="consumer_price" placeholder="300-500元">
+                                <input type="text" class="form-control from_sel input_line @error('consumer_price') is-invalid @enderror" value="{{ old('consumer_price') }}" id="consumer_price" name="consumer_price" placeholder="300-500元">
                             </div>
+                            @error('consumer_price')
+                               <span class="invalid-feedback" role="alert">
+                                   <strong style="color:red;">{{ $message }}</strong>
+                               </span>
+                             @enderror
                         </div>
+           {{--              <div class="form-group from_li">
+                            <label class="col-sm-3 col-lg-2 control-label fromli_l">
+                                <b>*</b><span>简述摘要:</span>
+                            </label>
+                            <div class="col-sm-9 col-lg-9 re_from_area_top">
+                                <textarea value="{{ old('excerpt') }}" class="form-control" rows="3" id="excerpt" placeholder="不少于25个字的简述" name="excerpt" style="resize:none"></textarea>
+                            </div>
+                            @error('excerpt')
+                               <span class="invalid-feedback" role="alert">
+                                   <strong style="color:red;">{{ $message }}</strong>
+                               </span>
+                             @enderror
+                        </div> --}}
                         <div class="form-group from_li">
                             <label class="col-sm-3 col-lg-2 control-label fromli_l">
                                 <b>*</b><span>联系方式:</span>
                             </label>
                             <div class="col-sm-5 col-lg-5 col-xs-12">
-                                <input type="text" class="form-control from_sel input_line" name="contact" id="contact" placeholder="QQ/微信/电话: 139XXXXXXXX">
+                                <input type="text" class="form-control from_sel input_line @error('contact') is-invalid @enderror" value="{{ old('contact') }}" name="contact" id="contact" placeholder="QQ/微信/电话: 139XXXXXXXX">
                             </div>
+                             @error('contact')
+                               <span class="invalid-feedback" role="alert">
+                                   <strong style="color:red;">{{ $message }}</strong>
+                               </span>
+                             @enderror
                         </div>
                         <div class="form-group from_li">
                             <label class="col-sm-3 col-lg-2 control-label fromli_l">
                                 <b>*</b><span>详细地址:</span>
                             </label>
                             <div class="col-sm-5 col-lg-5 col-xs-12">
-                                <input type="text" class="form-control from_sel input_line" id="contact_address" name="contact_address" placeholder="xx路,休闲会所">
+                                <input type="text" class="form-control from_sel input_line @error('contact_address') is-invalid @enderror" id="contact_address" name="contact_address" value="{{ old('contact_address') }}" placeholder="xx路,休闲会所">
                             </div>
+                             @error('contact_address')
+                               <span class="invalid-feedback" role="alert">
+                                   <strong style="color:red;">{{ $message }}</strong>
+                               </span>
+                             @enderror
                         </div>
                         <div class="form-group from_li">
-                            <label class="col-sm-3 col-lg-2 control-label fromli_l"><b>*</b><span>选择标签:</span> </label>
+                            <label class="col-sm-3 col-lg-2 control-label fromli_l"><b>*</b><span>服务项目:</span> </label>
                             <div class="col-sm-9 col-lg-9 col-xs-12 checkbox_p">
+                                @foreach($tabs as $tab)
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="service_type2" name="service_type" value="xxx"> 123
+                                    <input type="checkbox"  id="tab_ids" name="tab_ids[]" value="{{ $tab->id }}"> {{ $tab->tabname }}
                                 </label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" id="service_type6" name="service_type" value="xxx"> 456
-                                </label>
+                                @endforeach
                             </div>
+                             @error('tab_ids')
+                               <span class="invalid-feedback" role="alert">
+                                   <strong style="color:red;">{{ $message }}</strong>
+                               </span>
+                             @enderror
                         </div>
-
                         <div class="form-group from_li">
                             <label class="col-sm-3 col-lg-2 control-label fromli_l"><b>*</b><span>细节描述:</span> </label>
                             <div class="col-lg-10 col-xs-12">
                                 <div id="editor-container">
 
                                 </div>
+                                @error('body')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong style="color:red;">{{ $message }}</strong>
+                                  </span>
+                                @enderror
                             </div>
                             <textarea name="body" hidden="hidden" id="area_body"></textarea>
+                            <input type="hidden" name="picture" id="topice_img">
                         </div>
-                        <button type="submit" id="topiceButton" class="btn btn-rele">发布</button>
+                        <button type="submit" id="push" class="btn btn-rele">发布</button>
                     </form>
                 </div>
             </div>
@@ -177,14 +198,66 @@
         },
         //上传成功的图片插入编辑器
         customInsert: function(insertImgFn,result){
-            console.log(result)
             insertImgFn(result.data['path'])
+            $("#topice_img").val(result.data['path'])
         }
     }
     editor.config.onchange = function (newHtml) {
         $('#area_body').val(newHtml)
     }
     editor.create()
+
+    $(document).ready(function(){
+        getCity();
+        $("#province").change(function () {
+            getCity();
+        });
+        $("#city").change(function () {
+            getArea();
+        });
+    });
+
+    function getCity(){
+        var provinceId = parseInt($("#province").val());
+            $("#city").empty();
+            $.ajax({
+                type: "GET",
+                url: "{{ route('getCity') }}",
+                data: { q: provinceId},
+                dataType: 'json',
+                success: function (result) {
+                    $.each(result, function (i, n) {
+                        var option = '<option value="' + n.id + '">' + n.text + '</option>';
+                        $("#city").append(option);
+                    });
+                    //加载地区
+                    getArea();
+                },
+                error: function (x, e) {
+                    layer.msg('请求异常')
+                }
+            });
+    }
+
+    function getArea() {
+        var cityId = parseInt($("#city").val());
+        $("#county").empty();
+        $.ajax({
+            type: "GET",
+            url: "{{ route('getCounty') }}",
+            data: { q: cityId},
+            dataType: 'json',
+            success: function (result) {
+                $.each(result, function (i, n) {
+                    var option = '<option value="' + n.id + '">' + n.text + '</option>';
+                    $("#county").append(option);
+                });
+            },
+            error: function (x, e) {
+                layer.msg('请求异常')
+            }
+        });
+    }
 </script>
 @endsection
 

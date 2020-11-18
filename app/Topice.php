@@ -6,27 +6,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topice extends Model
 {
-    public function setPicturesAttribute($pictures)
-    {
-        if (is_array($pictures)) {
-             $this->attributes['pictures'] = json_encode($pictures);
-        }
-    }
+    protected $fillable = [
+        'title', 'excerpt', 'province', 'city','county','contact','consumer_price','body','user_id','category_id','picture','contact_address'
+    ];
 
-    public function getPicturesAttribute($pictures)
-    {
-        return json_decode($pictures, true);
-    }
+    // public function setPicturesAttribute($pictures)
+    // {
+    //     if (is_array($pictures)) {
+    //          $this->attributes['pictures'] = json_encode($pictures);
+    //     }
+    // }
 
-    public static function boot()
-    {
-        parent::boot();
-        static::saving(function($model){
-            $model->pictures = array_map(function($item){
-                   return  env('APP_URL').'/uploads/'.$item;
-            },$model->pictures);
-        });
-    }
+    // public function getPicturesAttribute($pictures)
+    // {
+    //     return json_decode($pictures, true);
+    // }
+
+    // public static function boot()
+    // {
+    //     parent::boot();
+    //     static::saving(function($model){
+    //         $model->pictures = array_map(function($item){
+    //                return  env('APP_URL').'/uploads/'.$item;
+    //         },$model->pictures);
+    //     });
+    // }
 
     public function user()
     {

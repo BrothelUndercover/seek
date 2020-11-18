@@ -21,17 +21,11 @@
                     <li class="clearfix">
                         <div class="new-content">
                             <a href="{{ route('topices.show',[$topice->id])}}" class="title">{{ $topice->title }}</a>
-                            <div class="newspic">
-                                <a href="Share/128052.html">
-                                    <img src="{{ asset("uploads/warp/1.jpg") }}">
-                                </a>
-                            </div>
                             <div class="flex_img">
-                                <p>{{ $topice->body }}</p>
-                                <a href=""><span class="badge badge-primary">按摩</span></a>
-                                <span class="label-danger badge">鸳鸯浴</span>
-                                <span class="badge badge-pill badge-success">情趣</span>
-                                <span class="badge badge-danger">莞式</span>
+                                <p>{!! $topice->body !!}</p>
+                                @foreach($topice->tabs as $tab)
+                                <a href="javascript:;"><span class="badge badge-primary">{{ $tab->tabname }}</span></a>
+                                @endforeach
                             </div>
                             <div class="tool">
                                 <span title="分类"><a href="" style="color: #b4b4b4;"><i class="fa fa-bars" aria-hidden="true"></i> {{ $topice->category->name }} </span></a>

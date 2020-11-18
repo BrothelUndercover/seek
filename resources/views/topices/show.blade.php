@@ -5,9 +5,9 @@
     <div class="con_left content_left">
         <ul class="breadcrumb dh">
             <li>当前位置： <a href="{{ route('pages.root') }}">首页</a></li>
-            <li><a href="">辽宁分享区</a></li>
-            <li><a href="">沈阳分享区</a></li>
-            <li><a href="">和平区分享区</a></li>
+            <li><a href="{{ route('pages.region') }}">{{ $topice->proviArea->name }}分享区</a></li>
+            <li><a href="{{ route('pages.region') }}">{{ $topice->cityArea->name }} 分享区</a></li>
+            <li><a href="{{ route('pages.region') }}">{{ $topice->countyArea->name }}分享区</a></li>
             <li class="active">陆地小坦克，谁开谁快乐</li>
         </ul>
         <div class="user_top xs_le">
@@ -42,7 +42,9 @@
                     </li>
                     <li>
                         <span class="con_pr_tit">服务项目：</span>
-                        <span class="con_sen">{{ $topice->ser_project }}</span>
+                        @foreach($topice->tabs as $tab)
+                        <a href="javascript:;"><span class="badge badge-primary">{{ $tab->tabname }}</span></a>
+                        @endforeach
                     </li>
                     <li>
                         <span class="con_pr_tit">联系方式：</span>
@@ -79,7 +81,7 @@
                     <span>详情描述</span>
                 </div>
                 <div class="desc-content">
-                    <p>{{ $topice->body }}</p>
+                    <p>{!! $topice->body !!}</p>
                 </div>
             </div>
         </div>
@@ -119,9 +121,9 @@
                 </p>
             </div>
         </div> --}}
-        <div>
-        </div>
-        <div class="con_tab xs_le">
+     {{--    <div>
+        </div> --}}
+     {{--    <div class="con_tab xs_le">
             <div class="list-group-item color_lis_con cont_float">
                 <div class="row">
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 sc">
@@ -147,7 +149,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="con_tab xs_le">
             <div href="#" class="list-group-item color_lis_con cont_float">
                 <div class="content-callout bs-callout-info">

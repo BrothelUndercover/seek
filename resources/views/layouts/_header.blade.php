@@ -46,7 +46,7 @@
                 </div>
                 @else
                  <div class="myshare">
-                    <button class="btn btn-share" onclick="window.location='/Share/Create/0'">写分享</button>
+                    <button class="btn btn-share" onclick="window.location='{{ route('topices.create',['provi'=> 2]) }}'">写分享</button>
                 </div>
                 <div class="user_img_box">
                     <img src="{{ Auth::user()->avatar }}" alt="头像">
