@@ -114,7 +114,7 @@
     <!-- 侧边专区 -->
     <div class="con_right">
         <div class="list-group list_box border_con">
-            @include('topices._hot',['hotTopices'=> $topice->withOrder('ishot')->take(20)->get()])
+            @include('topices._hot',['hotTopices'=> $topices->where('is_hot',true)->take(20)])
         </div>
     </div>
 </div>

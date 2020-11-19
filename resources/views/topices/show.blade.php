@@ -8,7 +8,7 @@
             <li><a href="{{ route('pages.region') }}">{{ $topice->proviArea->name }}分享区</a></li>
             <li><a href="{{ route('pages.region') }}">{{ $topice->cityArea->name }} 分享区</a></li>
             <li><a href="{{ route('pages.region') }}">{{ $topice->countyArea->name }}分享区</a></li>
-            <li class="active">陆地小坦克，谁开谁快乐</li>
+            <li class="active">{{ $topice->title }}</li>
         </ul>
         <div class="user_top xs_le">
             <h1>{{ $topice->title }}</h1>
@@ -52,7 +52,7 @@
                             <span class="con_sen">{{ $topice->contact }}</span>
                         @else
                             <blockquote class="blockdown">
-                                <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="" class="erphpdown-vip">升级VIP</a></strong>
+                                <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['stype'=>'vip'])}}" class="erphpdown-vip">升级VIP</a></strong>
                             </blockquote>
                         @endif
                     </li>
@@ -62,16 +62,16 @@
                             <span class="con_sen">safdafafaf</span>
                         @else
                             <blockquote class="blockdown">
-                                <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="" class="erphpdown-vip">升级VIP</a></strong>
+                                <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['stype'=>'vip'])}}" class="erphpdown-vip">升级VIP</a></strong>
                             </blockquote>
                         @endif
                     </li>
-                    <li>
+  {{--                   <li>
                         <span class="con_pr_tit">信息价格：</span>
                         <span class="con_sen" style="margin-top: -6px;">
                             <font color="red"> 20金币</font><button class="buy" id="BuyPost">购买</button> 没有金币? <a href="">点我>></a>
                         </span>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

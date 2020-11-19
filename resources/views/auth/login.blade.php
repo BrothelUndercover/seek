@@ -12,10 +12,10 @@
 
                         <div class="form-group  has-feedback">
                             <div class="col-sm-12">
-                                <input id="email" type="email" class="form-control input_line @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="你的用户名" autofocus>
+                                <input id="name" type="name" class="form-control input_line @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="email" placeholder="你的用户名" autofocus>
                                 <i class="fa fa-user form-control-feedback"></i>
 
-                                @error('email')
+                                @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong style="color:red;">{{ $message }}</strong>
                                     </span>
