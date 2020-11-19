@@ -17,6 +17,7 @@ class UsersController extends Controller
     public function show(Request $request)
     {
         $ships = MemberShip::all();
+        dd($ships);
         return view('users.show',['type'=>$request->stype,'ships'=>$ships]);
     }
 
