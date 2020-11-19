@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\MemberShip;
+use App\Membership;
 
 class UsersController extends Controller
 {
@@ -16,8 +16,7 @@ class UsersController extends Controller
 
     public function show(Request $request)
     {
-        $ships = MemberShip::all();
-        dd($ships);
+        $ships = Membership::all();
         return view('users.show',['type'=>$request->stype,'ships'=>$ships]);
     }
 
