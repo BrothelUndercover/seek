@@ -12,7 +12,7 @@
 
                         <div class="form-group  has-feedback">
                             <div class="col-sm-12">
-                                <input id="name" type="name" class="form-control input_line @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="email" placeholder="你的用户名" autofocus>
+                                <input id="name" type="name" class="form-control input_line @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="你的用户名" autofocus>
                                 <i class="fa fa-user form-control-feedback"></i>
 
                                 @error('name')
@@ -25,7 +25,7 @@
 
                         <div class="form-group  has-feedback">
                             <div class="col-sm-12">
-                                <input id="password" type="password" class="form-control input_line @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="你的密码">
+                                <input id="password" type="password" class="form-control input_line @error('password') is-invalid @enderror" name="password" required autocomplete="password" placeholder="你的密码">
                                 <i class="fa fa-unlock-alt form-control-feedback "></i>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
