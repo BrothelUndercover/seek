@@ -18,6 +18,7 @@
         "jaeger/querylist": "~V4",
         "james.xue/login-captcha": "^2.0",
         "laravel-admin-ext/simplemde": "^1.0",
+        "laravel-admin-ext/wang-editor": "1.*",
         "laravel-lang/lang": "~5.0",
         "laravel/framework": "^6.18.35",
         "laravel/tinker": "^2.0",
@@ -55,6 +56,9 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "app/helpers.php"
         ]
     },
     "autoload-dev": {

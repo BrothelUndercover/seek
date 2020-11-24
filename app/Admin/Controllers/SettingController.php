@@ -2,20 +2,20 @@
 
 namespace App\Admin\Controllers;
 
-use App\Membership;
+use App\Setting;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
-class MemberShipController extends AdminController
+class SettingController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = '会员';
+    protected $title = 'SEO及其他配置';
 
     /**
      * Make a grid builder.
@@ -24,14 +24,12 @@ class MemberShipController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new Membership());
+        $grid = new Grid(new Setting());
 
-        $grid->column('id', __('序号'));
-        $grid->column('viptype_name', __('会员类型'));
-        $grid->column('price', __('价格(元)'));
-        $grid->column('identifier',__('标识'));
+        $grid->column('id', __('Id'));
+        $grid->column('key', __('Key'));
+        $grid->column('value', __('Value'));
         $grid->column('description', __('描述'));
-        $grid->column('cardurl', __('发卡地址'))->editable();
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('更新时间'));
 
@@ -46,12 +44,10 @@ class MemberShipController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new Membership());
+        $form = new Form(new Setting());
 
-        $form->text('viptype_name', __('会员类型'));
-        $form->text('identifier',__('标识'));
-        $form->decimal('price', __('价格'))->default(0.00);
-        $form->decimal('cardurl', __('发卡地址'));
+        $form->text('key', __('Key'));
+        $form->textarea('value', __('Value'));
         $form->text('description', __('描述'));
 
         return $form;

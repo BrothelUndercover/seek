@@ -8,10 +8,10 @@
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>@yield('title', '狼友阁') - 2020全国免费凤楼信息 - 分享楼凤兼职，酒店会所，桑拿洗浴，全国楼凤</title>
-  <meta name="author" content="凤楼阁">
-  <meta name="description" content="@yield('description','楼凤,小姐,凤楼信息,2020年,全国免费,凤楼阁论坛，自由开放，信息共享，这里有全国各地楼凤，兼职，良家，桑拿，洗浴，按摩，会所，高端外围及体验感受的详细性息介绍,全国楼凤论坛免费')" />
-  <meta name="keyword" content="@yield('keyword', '2020全国免费凤楼信息,楼凤,社区,论坛,高端,外围,伴游')" />
+  <title>@yield('title', '色鬼家') - {{ setting('seo_title','全国免费凤楼信息 - 分享楼凤兼职，酒店会所，桑拿洗浴，全国楼凤') }}</title>
+  <meta name="author" content="色鬼家,凤楼阁">
+  <meta name="description" content="@yield('description',setting('seo_description','楼凤,小姐,凤楼信息,全国免费,凤楼阁论坛，自由开放，信息共享，这里有全国各地楼凤，兼职，良家，桑拿，洗浴，按摩，会所，高端外围及体验感受的详细性息介绍,全国楼凤论坛免费'))" />
+  <meta name="keyword" content="@yield('keyword',setting('seo_keyword','全国免费凤楼信息,楼凤,社区,论坛,高端,外围,伴游'))" />
 
   <!-- Styles -->
   <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
@@ -39,6 +39,7 @@
   <script src="{{ mix('js/expand.js') }}"></script>
   <script src="{{ asset('js/IE.js') }}"></script>
   <script src="{{ asset('frame/layer/layer.js') }}"></script>
+  {!! setting('seo_global_count') !!}
 
   @yield('scripts')
 

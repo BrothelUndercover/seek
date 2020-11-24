@@ -110,4 +110,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->followings->contains($user_id);
     }
+
+    //订单
+    public function orders()
+    {
+        return $this->hasMany('App\Order','user_id');
+    }
 }

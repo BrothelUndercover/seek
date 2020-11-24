@@ -44,7 +44,7 @@ class MemberController extends AdminController
         $grid->column('avatar', __('头像'))->image(45, 45);
         $grid->column('user_status', __('用户状态'))->switch();
         $grid->column('credit', __('积分'));
-        $grid->column('vip_type', __('会员类型'))->using($this->vipType)->label([1=>'success',2=>'success',3=>'success']);;
+        $grid->column('vip_type', __('会员类型'))->using($this->vipType)->label([1=>'success',2=>'success',3=>'success']);
         $grid->column('vip_expire_at', __('会员到期时间'))->display(function(){
             if (!$this->vip_type) {
                return '';

@@ -19,4 +19,8 @@ Route::group([
     $router->resource('topices', TopiceController::class);
     $router->resource('tabs', TabController::class);
     $router->resource('carousels', CarouselController::class);
+    $router->resource('settings', SettingController::class);
+    $router->resource('cards', CardController::class);
+    $router->resource('orders', OrderController::class);
+    $router->resource('ip-lists', IpListController::class);
 });

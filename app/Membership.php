@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Membership extends Model
 {
 
-    protected $fillable = ['viptype_name','price','description','cardurl'];
+    protected $fillable = ['viptype_name','price','identifier','description','cardurl'];
+
+    public function orders()
+    {
+        return $this->hasMany('App\Order','ship_id');
+    }
 }

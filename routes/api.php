@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::get('province','CommonController@province')->name('getProvince');
 Route::get('city','CommonController@city')->name('getCity');
 Route::get('county','CommonController@county')->name('getCounty');
+Route::post('upload','CommonController@upload');
 
 $api = app('Dingo\Api\Routing\Router');
 

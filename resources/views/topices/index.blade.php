@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
+@section('title',$area->name . '楼凤信息')
 
 @section('content')
 <div class="container con_padding con_la in_top">

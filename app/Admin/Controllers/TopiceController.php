@@ -4,12 +4,15 @@ namespace App\Admin\Controllers;
 
 use App\Topice;
 use Encore\Admin\Controllers\AdminController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use App\City;
 use App\Category;
 use App\User;
+
 
 class TopiceController extends AdminController
 {
@@ -33,6 +36,7 @@ class TopiceController extends AdminController
         // $grid->fixColumns(3);
         $grid->column('id', __('序号'))->sortable();
         $grid->column('title', __('标题'));
+        $grid->column('is_check',__('审核'))->using(['1'=>'审核通过','0'=>'未审核'])->label([1=>'success',0 => 'default']);
         $grid->column('excerpt', __('摘要'))->display(function($excerpt){
             return \Str::limit($excerpt,10);
         });
@@ -64,7 +68,8 @@ class TopiceController extends AdminController
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
             $filter->equal('title','标题');
-            $filter->equal('category_id','分类')->select(Category::pluck('id','name'));
+            $filter->equal('is_check','审核')->select(['0'=> '未审核','1'=> '审核通过']);
+            $filter->equal('category_id','分类')->select(Category::where('status',true)->pluck('id','name'));
             $filter->like('body','描述');
         });
         return $grid;
@@ -144,10 +149,25 @@ class TopiceController extends AdminController
         $form->number('order', __('排序'))->default(0);
         $form->radio('is_hot', __('是否热点'))->options([0 => '否', 1=> '是'])->default(1);
         $form->number('rating', __('星级好评'))->default(10);
-        $form->simplemde('body', __('具体描述'))->height(300);
+        $form->editor('body', __('具体描述'));
+        $form->switch('is_check','审核');
         // $form->image('picture', __('封面'))->sortable()->removable();
         // $form->multipleImage('pictures', __('照片集'))->sortable()->removable();
 
         return $form;
+    }
+
+    public function upload(Request $request)
+    {
+        $urls = [];
+
+        foreach ($request->file() as $file) {
+            $urls[] = Storage::url($file->store('images'));
+        }
+
+        return [
+            "errno" => 0,
+            "data"  => $urls,
+        ];
     }
 }

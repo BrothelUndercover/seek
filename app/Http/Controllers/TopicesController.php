@@ -36,6 +36,7 @@ class TopicesController extends Controller
                     -> when($countyId,function(Builder $query) use ($countyId){
                         return $query->where('county',$countyId);
                     })
+                    ->where('is_check',true)
                     ->paginate(6);
         $categories = Category::all();
 

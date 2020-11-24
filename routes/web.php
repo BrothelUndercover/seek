@@ -35,9 +35,11 @@ Route::get('users/{stype}','UsersController@show')->name('users.show');
 //关注列表&粉丝列表
 Route::get('users/{user}/followings', 'UsersController@followings')->name('users.followings');
 Route::get('users/{user}/followers', 'UsersController@followers')->name('users.followers');
+Route::post('users/activation','UsersController@checkSecret')->name('users.authSecret');
 //关注&取消关注
 Route::post('users/followers/{userid}','FollowersController@store')->name('followers.store');
 Route::delete('users/followers/{userid}','FollowersController@destroy')->name('followers.destroy');
+
 
 //帖子评论
 Route::resource('replies', 'RepliesController', ['only' => ['store','destroy']]);

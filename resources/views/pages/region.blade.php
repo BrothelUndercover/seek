@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '地区-凤楼阁论坛')
+@section('title', setting('seo_title','地区-分享楼凤兼职，酒店会所，桑拿洗浴，全国楼凤'))
 
 @section('styles')
 

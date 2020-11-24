@@ -14,6 +14,7 @@ class PagesController extends Controller
     {
         $topices = $topice->withOrder('default')
                           ->with('user','proviArea','cityArea','countyArea','category','tabs')
+                          ->where('is_check',true)
                           ->paginate(30);
          $hotCities = City::where('hot',true)->get();
          $carousels = Carousel::where('status',true)->get();

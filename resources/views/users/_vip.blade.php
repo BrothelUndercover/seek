@@ -58,6 +58,6 @@ height: 25px;
         <button style="width:180px;" class="btn btn-info" id="btnpay">点击购买</button>
     </p>
     <p style="margin-top:20px;font-size:17px; color:red">
-        有问题请找客服，恶意投诉钱款不退，并封号! 客服邮箱：<a href=""></a>
+        有问题请找客服，恶意投诉钱款不退，并封号! 客服邮箱：<a href="mailto:{{ setting('email') }}">{{ setting('email') }}</a>
     </p>
 </div>

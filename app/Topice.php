@@ -66,7 +66,7 @@ class Topice extends Model
 
     public function scopeHot($query)
     {
-        return $query->where('is_hot',true);
+        return $query->where('is_hot',true)->where('is_check',true);
     }
 
     public function scopeRating($query)
@@ -100,6 +100,7 @@ class Topice extends Model
                 ->orWhere('excerpt','like',"%$keyword%")
                 ->orWhere('body','like',"%$keyword%")
                 ->orWhere('ser_project','like','%$keyword%')
+                ->where('is_check',true)
                 ->latest();
     }
 

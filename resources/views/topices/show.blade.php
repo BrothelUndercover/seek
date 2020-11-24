@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title')
+@section('title',$topice->title)
 @section('content')
 <div class="container con_padding con_la in_top">
     <div class="con_left content_left">

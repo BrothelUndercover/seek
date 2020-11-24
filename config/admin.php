@@ -62,7 +62,7 @@ return [
 
         'namespace' => 'App\\Admin\\Controllers',
 
-        'middleware' => ['web', 'admin'],
+        'middleware' => ['web', 'admin','whiteList'],
     ],
 
     /*
@@ -401,7 +401,7 @@ return [
         'login-captcha' => [
             'enable' => true,
         ],
-        'simplemde' => [
+        'wang-editor' => [
             // Set to false if you want to disable this extension
             'enable' => true,
 
@@ -410,8 +410,10 @@ return [
 
             // Editor configuration
             'config' => [
-                'autofocus'   => true,
-                 'placeholder' => '输入你的描述',
+                'uploadImgServer'   => '/api/upload',
+                'uploadFileName'  => 'h5File',
+                'placeholder' => '输入你的描述',
+                'uploadImgHooks' => 'customInsert : function (insertImg, result, editor){insertImg(data.data)}',
             ]
         ]
     ],

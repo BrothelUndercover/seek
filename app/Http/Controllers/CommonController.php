@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use App\Handlers\ImageUploadHandler;
 use App\City;
 
 class CommonController extends Controller
@@ -19,6 +21,15 @@ class CommonController extends Controller
         return City::where('pid',$request->q)->get(['id','name as text']);
     }
 
+    public function upload(Request $request,ImageUploadHandler $uploader)
+    {
+        $result = $uploader->save($request->file('h5File'),'admin_topices',\Auth::id(),300,330);
+        return  json_encode([
+            "errno" => 0,
+            "data"  =>[$result['path']],
+        ]);
+    }
+    //格式化城市级联数据
     public function arrayToJson()
     {
         $data = City::all()->toArray();

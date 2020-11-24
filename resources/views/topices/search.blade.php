@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '2020全国免费凤楼信息 - 分享楼凤兼职，酒店会所，桑拿洗浴，全国楼凤')
+@section('title', setting('seo_description','分享楼凤兼职，酒店会所，桑拿洗浴，全国楼凤'))
 
 @section('styles')
 
