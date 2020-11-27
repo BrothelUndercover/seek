@@ -99,7 +99,6 @@ class Topice extends Model
         return $query->where('title','like',"%$keyword%")
                 ->orWhere('excerpt','like',"%$keyword%")
                 ->orWhere('body','like',"%$keyword%")
-                ->orWhere('ser_project','like','%$keyword%')
                 ->where('is_check',true)
                 ->latest();
     }
