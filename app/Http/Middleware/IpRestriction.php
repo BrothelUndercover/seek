@@ -16,9 +16,8 @@ class IpRestriction
      */
     public function handle($request, Closure $next)
     {
-        $ip = $request->server('HTTP_X_REAL_IP');
-
-        if (IpList::checkIp($ip,true)) {
+        // $ip = $request->server('HTTP_X_REAL_IP');
+        if (IpList::checkIp($request->ip(),true)) {
             return $next($request);
         }
         return response('', 404);
