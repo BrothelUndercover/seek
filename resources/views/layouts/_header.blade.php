@@ -52,43 +52,43 @@
                     <img src="{{ Auth::user()->avatar }}" alt="头像">
                     <ul class="user_silder">
                         <li>
-                            <a href="{{ route('users.show',['stype' => 'self','user' => Auth::user()->id ])}}">
+                            <a href="{{ route('users.show',['stype' => 'self'])}}">
                                 <i class="fa fa-user-circle"></i>
                                 个人资料
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('users.show',['stype' => 'vip','user' => Auth::user()->id]) }}">
+                            <a href="{{ route('users.show',['stype' => 'vip']) }}">
                                 <i class="fa fa-vimeo"></i>
                                 充值VIP
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('users.show',['stype' => 'order','user' => Auth::user()->id]) }}">
+                            <a href="{{ route('users.show',['stype' => 'order']) }}">
                                 <i class="fa fa-file-text-o"></i>
                                 我的订单
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('users.show',['stype' => 'share','user' => Auth::user()->id]) }}">
+                            <a href="{{ route('users.show',['stype' => 'share']) }}">
                                 <i class="fa fa-share"></i>
                                 我的分享
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('users.show',['stype' => 'collect','user' => Auth::user()->id]) }}">
+                            <a href="{{ route('users.show',['stype' => 'collect']) }}">
                                 <i class="fa fa-star"></i>
                                 我的收藏
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('users.show',['stype'=>'updatePassword','user' => Auth::user()->id]) }}">
+                            <a href="{{ route('users.show',['stype'=>'updatePassword']) }}">
                                 <i class="fa fa-unlock-alt"></i>
                                 修改密码
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('users.show',['stype'=>'glod','user' => Auth::user()->id]) }}">
+                            <a href="{{ route('users.show',['stype'=>'glod']) }}">
                                 <i class="fa fa-usd"></i>
                                 我的金币
                             </a>

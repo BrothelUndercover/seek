@@ -31,7 +31,7 @@ Route::middleware('throttle:60,1')->group(function () {
 
     //用户相关
     Route::resource('users','UsersController',['only'=> ['update','edit']]);
-    Route::get('users/{user}/{stype?}','UsersController@show')->name('users.show');
+    Route::get('users/{stype}','UsersController@show')->name('users.show');
 
     //关注列表&粉丝列表
     Route::get('users/{user}/followings', 'UsersController@followings')->name('users.followings');
