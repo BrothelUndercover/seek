@@ -124,4 +124,8 @@ class Topice extends Model
         return $this->belongsTo('App\City','county');
     }
 
+    public function addViewCount()
+    {
+        return $this->where('id',$this->id)->increment('view_count',1);
+    }
 }

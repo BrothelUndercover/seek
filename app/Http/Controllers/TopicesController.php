@@ -16,7 +16,7 @@ class TopicesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth',['create','store','uploadImage']);
+        $this->middleware('auth',['only' => ['create','store','uploadImage']]);
     }
 
     public function index(Request $request)
@@ -37,7 +37,7 @@ class TopicesController extends Controller
                         return $query->where('county',$countyId);
                     })
                     ->where('is_check',true)
-                    ->paginate(6);
+                    ->paginate(20);
         $categories = Category::all();
 
         return view('topices.index',compact('topices','area','categories','request'));
@@ -45,7 +45,7 @@ class TopicesController extends Controller
 
     public function show(Request $request,Topice $topice)
     {
-
+        $topice->addViewCount();
         return view('topices.show',compact('topice'));
     }
 

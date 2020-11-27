@@ -18,14 +18,16 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth',['show']);
+        $this->middleware('auth',['except' =>['show']]);
+
         $this->vipTime = ['1' => 1,'2'=> 3 ,'3'=> 12, '4' => '240'];
     }
 
-    public function show(Request $request)
+    public function show(Request $request,User $user)
     {
         $ships = Membership::all();
-        return view('users.show',['type'=>$request->stype,'ships'=>$ships]);
+
+        return view('users.show',['type'=>$request->stype,'ships'=>$ships,'user'=>$user]);
     }
 
     public function checkSecret(Request $request)

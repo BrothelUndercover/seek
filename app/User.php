@@ -11,6 +11,7 @@ use App\Topice;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+    use Handlers\Traits\LastActivedAtHelper;
 
     /**
      * The attributes that are mass assignable.
@@ -39,14 +40,6 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at',
         'last_actived_at'
     ];
-
-    public function setLastActivedAtAttribute($value)
-    {
-        if (!$value) {
-            $this->attributes['last_actived_at'] = now();
-        }
-        return $value;
-    }
 
     public function getAvatarAttribute($value)
     {

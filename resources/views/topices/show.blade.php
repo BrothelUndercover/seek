@@ -52,7 +52,7 @@
                             <span class="con_sen">{{ $topice->contact }}</span>
                         @else
                             <blockquote class="blockdown">
-                                <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['stype'=>'vip'])}}" class="erphpdown-vip">升级VIP</a></strong>
+                                <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['user'=>Auth::user()->id,'stype'=>'vip'])}}" class="erphpdown-vip">升级VIP</a></strong>
                             </blockquote>
                         @endif
                     </li>
@@ -62,7 +62,7 @@
                             <span class="con_sen">safdafafaf</span>
                         @else
                             <blockquote class="blockdown">
-                                <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['stype'=>'vip'])}}" class="erphpdown-vip">升级VIP</a></strong>
+                                <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['user'=>Auth::user()->id,'stype'=>'vip'])}}" class="erphpdown-vip">升级VIP</a></strong>
                             </blockquote>
                         @endif
                     </li>

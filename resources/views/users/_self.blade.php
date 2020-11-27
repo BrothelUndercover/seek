@@ -2,7 +2,7 @@
     <div class="form-group line-down">
         <label for="inputEmail3" class="col-sm-2 control-label text-align">用户名:</label>
         <div class="col-sm-10">
-            <p class="form-control-static">{{ Auth::user()->name }}</p>
+            <p class="form-control-static">{{ $user->name }}</p>
         </div>
     </div>
     <div class="form-group line-down">
@@ -18,26 +18,26 @@
     <div class="form-group line-down">
         <label class="col-sm-2 control-label text-align">电子邮件:</label>
         <div class="col-sm-10">
-            <p class="form-control-static">{{ Auth::user()->email }}</p>
+            <p class="form-control-static">{{ $user->email }}</p>
         </div>
     </div>
     <div class="form-group line-down">
         <label class="col-sm-2 control-label text-align">金币:</label>
         <div class="col-sm-10">
-            <p class="form-control-static">{{ Auth::user()->credit }}</p>
+            <p class="form-control-static">{{ $user->credit }}</p>
         </div>
     </div>
     <div class="form-group line-down">
         <label class="col-sm-2 control-label text-align">用户组:</label>
         <div class="col-sm-10">
             <p class="form-control-static">
-            @if(!Auth::user()->vip_type)
+            @if(! $user->vip_type)
                 普通用户
             {{--     &nbsp;&nbsp;<a href="" class="btn btn-default btn-style">充值</a> --}}
                 &nbsp;&nbsp;<a href="javascript:;" onclick="activateVip()" class="btn btn-default btn-style">激活会员</a>
-            @elseif(Auth::user()->vip_type)
+            @elseif($user->vip_type)
                 <span style="color: red;font-size: 18px;margin-right:10px;">VIP会员</span>
-                <span>会员到期时间: <i style="color:red;">{{Auth::user()->vip_expire_at }}</i></span>
+                <span>会员到期时间: <i style="color:red;">{{ $user->vip_expire_at }}</i></span>
             @endif
             </p>
         </div>
@@ -45,19 +45,25 @@
     <div class="form-group line-down">
         <label class="col-sm-2 control-label text-align">当前用户状态</label>
         <div class="col-sm-10">
-            <p class="form-control-static">{{ Auth::user()->user_status == true ? '正常': '禁用' }}</p>
+            <p class="form-control-static">{{ $user->user_status == true ? '正常': '禁用' }}</p>
         </div>
     </div>
     <div class="form-group line-down">
         <label class="col-sm-2 control-label text-align">发帖数量:</label>
         <div class="col-sm-10">
-            <p class="form-control-static">{{ count(Auth::user()->topices)}}</p>
+            <p class="form-control-static">{{ count($user->topices)}}</p>
         </div>
     </div>
     <div class="form-group line-down">
         <label class="col-sm-2 control-label text-align">评论数量:</label>
         <div class="col-sm-10">
-            <p class="form-control-static">{{ count(Auth::user()->replies) }}</p>
+            <p class="form-control-static">{{ count($user->replies) }}</p>
+        </div>
+    </div>
+    <div class="form-group line-down">
+        <label class="col-sm-2 control-label text-align">最后活动时间:</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">{{ $user->last_actived_at }}</p>
         </div>
     </div>
      <div class="form-group line-down">
