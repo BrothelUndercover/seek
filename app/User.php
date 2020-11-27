@@ -46,7 +46,7 @@ class User extends Authenticatable implements JWTSubject
         if (!$value) {
              return \Avatar::create($this->name)->toBase64();
         }
-        return env('APP_URL').'/upload/'.$value;
+        return env('APP_URL').'/uploads/'.$value;
     }
 
     public function topices()
