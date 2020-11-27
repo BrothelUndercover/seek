@@ -60,7 +60,7 @@
         </div>
         <div class="list-group list_box border_con">
            {{-- 热门推荐 --}}
-           @include('topices._hot',['hotTopices'=> $topice->withOrder('ishot')->take(30)->get()])
+           @include('topices._hot',['hotTopices'=> $topices->where('is_hot',true)->take(20)])
         </div>
     </div>
 </div>
