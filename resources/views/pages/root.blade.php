@@ -29,6 +29,12 @@
       display: block;
       margin: 10px;
     }
+    .flex_img img {
+        max-width:30% !important;
+    }
+    .flex_img p{
+        display: inline;
+    }
 </style>
 <div class="container in_top index">
       @include('common._message')

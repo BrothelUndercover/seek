@@ -3,6 +3,14 @@
 @section('title',$area->name . '楼凤信息')
 
 @section('content')
+<style>
+    .flex_img img {
+        max-width:30% !important;
+    }
+    .flex_img p{
+        display: inline;
+    }
+</style>
 <div class="container con_padding con_la in_top">
     <div class="con_left content_left">
         <ul class="breadcrumb dh">
