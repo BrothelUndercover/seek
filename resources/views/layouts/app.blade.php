@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+  {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
 
   <title>@yield('title', '色鬼家') - {{ setting('seo_title','全国免费凤楼信息 - 分享楼凤兼职，酒店会所，桑拿洗浴，全国楼凤') }}</title>
   <meta name="author" content="色鬼家,凤楼阁">

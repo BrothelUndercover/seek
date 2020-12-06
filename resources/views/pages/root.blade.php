@@ -88,7 +88,7 @@
             </div>
             <ul class="list_bot">
               @foreach($hotCities as $city)
-                <li><a href="">{{ $city->name }}</a></li>
+                <li><a href="{{ route('topices.index',['province'=> $city->upperLevel->spell,'category'=> 0,'city'=>$city->id]) }}">{{ $city->name }}</a></li>
                @endforeach
             </ul>
         </div>

@@ -63,12 +63,12 @@
                                 充值VIP
                             </a>
                         </li>
-                        <li>
+                       {{--  <li>
                             <a href="{{ route('users.show',['stype' => 'order']) }}">
                                 <i class="fa fa-file-text-o"></i>
                                 我的订单
                             </a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{ route('users.show',['stype' => 'share']) }}">
                                 <i class="fa fa-share"></i>
@@ -87,11 +87,11 @@
                                 修改密码
                             </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('users.show',['stype'=>'glod']) }}">
                                 <i class="fa fa-usd"></i>
                                 我的金币
-                            </a>
+                            </a> --}}
                         </li>
                         <li>
                             <form action="{{ route('logout') }}" method="POST" onsubmit="return confirm('你确定退出吗?');">

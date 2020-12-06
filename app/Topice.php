@@ -127,4 +127,9 @@ class Topice extends Model
     {
         return $this->where('id',$this->id)->increment('view_count',1);
     }
+
+    public static function scopeTopiceRelated($query,$cityid)
+    {
+        return $query->where('city',$cityid)->where('is_check',true)->take(25);
+    }
 }

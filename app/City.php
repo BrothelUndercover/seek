@@ -11,6 +11,10 @@ class City extends Model
         return $this->hasMany(self::class,'pid');
     }
 
+    public function upperLevel()
+    {
+        return $this->belongsTo(self::class,'pid');
+    }
     //递归
     public function childRecursive()
     {

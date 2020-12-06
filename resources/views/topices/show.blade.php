@@ -59,7 +59,7 @@
                     <li>
                         <span class="con_pr_tit">详细地址：</span>
                         @if(Auth::check() && Auth::user()->vip_type)
-                            <span class="con_sen">safdafafaf</span>
+                            <span class="con_sen">{{ $topice->contact_address }}</span>
                         @else
                             <blockquote class="blockdown">
                                 <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['stype'=>'vip'])}}" class="erphpdown-vip">升级VIP</a></strong>
@@ -201,11 +201,12 @@
                 </div>
             </div>
             <ul class="tj_list">
+                @foreach($topices as $topice)
                 <li>
-                    <a href="">沈阳随缘，熟女</a>
-                    <p><span>浏览：283</span><span>日期：2020-02-05</span></p>
+                    <a href="{{ route('topices.show',[$topice->id]) }}">{{ $topice->title }}</a>
+                    <p><span>浏览：{{ $topice->view_count }}</span><span>日期：{{ $topice->created_at->diffForHumans() }}</span></p>
                 </li>
-
+                @endforeach
             </ul>
         </div>
     </div>

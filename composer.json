@@ -15,7 +15,7 @@
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
         "intervention/image": "^2.5",
-        "jaeger/querylist": "~V4",
+        "jaeger/querylist": "^4.2",
         "james.xue/login-captcha": "^2.0",
         "laravel-admin-ext/simplemde": "^1.0",
         "laravel-admin-ext/wang-editor": "1.*",

@@ -16,7 +16,7 @@ class TopicesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth',['only' => ['create','store','uploadImage']]);
+        $this->middleware('auth',['only' => ['create','store','uploadImage','show']]);
     }
 
     public function index(Request $request)
@@ -46,7 +46,8 @@ class TopicesController extends Controller
     public function show(Request $request,Topice $topice)
     {
         $topice->addViewCount();
-        return view('topices.show',compact('topice'));
+        $topices = Topice::topiceRelated($topice->city)->get();
+        return view('topices.show',compact('topice','topices'));
     }
 
 

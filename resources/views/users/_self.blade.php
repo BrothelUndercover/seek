@@ -2,17 +2,17 @@
     <div class="form-group line-down">
         <label for="inputEmail3" class="col-sm-2 control-label text-align">用户名:</label>
         <div class="col-sm-10">
-            <p class="form-control-static">{{ $user->name }}</p>
+            <p class="form-control-static">{{ $user->name }} <i style="margin-left: 10px;">{{ $user->last_actived_at->diffForHumans() }}在线</i></p>
         </div>
     </div>
     <div class="form-group line-down">
         {{-- <label for="inputEmail3" class="col-sm-2 control-label text-align">推广链接:</label> --}}
         <div class="col-sm-10">
-            <p>
+            {{-- <p> --}}
                {{--  <span >我发现一个真男人福利网站：<i id="copyVal">{{ env('APP_URL').'/share/'.Auth::user()->sharecode }}</i></span> --}}
          {{--        <button type="button" id="btncopy" data-clipboard-target="#copyVal" class="btn btn-default btn-style">复制</button> --}}
-            </p>
-            <p class="form-control-static">通过推广<font color="red">你将获得金币</font>，有效注册用户<font color="red">你将获得10金币</font>，注册用户分享信息<font color="red">你将获得20金币</font>，注册用户购买<font color="red">你将获得20金币</font>，充值VIP<font color="red">你将获得50金币</font>。</p>
+            {{-- </p> --}}
+           {{--  <p class="form-control-static">通过推广<font color="red">你将获得金币</font>，有效注册用户<font color="red">你将获得10金币</font>，注册用户分享信息<font color="red">你将获得20金币</font>，注册用户购买<font color="red">你将获得20金币</font>，充值VIP<font color="red">你将获得50金币</font>。</p> --}}
         </div>
     </div>
     <div class="form-group line-down">
