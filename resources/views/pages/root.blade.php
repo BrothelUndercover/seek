@@ -6,44 +6,33 @@
 @stop
 
 @section('content')
+<link href="{{ asset('css/limarquee.css') }}" rel="stylesheet">
 <style>
-    .content-lamp{
-        /*width: 960px;*/
-        height: 200px;
-        overflow: hidden;
-        margin: auto;
-        margin-bottom: 18px;
-    }
-    .content-lamp ul {
-        margin: 0;
-        padding: 0;
-        width: 200%;  /* 不一定非要200%，只要比100%多出一个li盒子宽度即可，但由于最极端的宽度也就是显示一个li，再多出一个li，一共两个li，所以最合适的值是200% */
-        height:100%;
-    }
-    .content-lamp ul li{
-      list-style: none;
-      float: left;
-      width: 275px;
-      height: 180px;
-      /*border: #ccc solid 1px;*/
-      display: block;
-      margin: 10px;
-    }
-    .flex_img img {
-        max-width:30% !important;
-    }
-    .flex_img p{
-        display: inline;
-    }
+.content-lamp{/*width: 960px;*/height: 200px;overflow: hidden;margin: auto;margin-bottom: 18px;}
+.dowebok {width: 100%;margin: 5px auto;font-size: 0;}
+.dowebok img {margin-left: 10px;vertical-align: top;height: 180px;width: 250px;}
+.more {clear:both; margin: 0 auto;text-align: center;line-height: 25px;}
+.more-button{ width:48%;height:30px;line-height: 25px; border:none;border-radius: 16px;background: #ccc;margin-bottom: 10px;}
+.more-button:focus,
+.more-button:active:focus,
+.more-button.active:focus,
+.more-button.focus,
+.more-button:active.focus,
+.more-button.active.focus {outline: none;border-color: transparent;box-shadow:none;}
 </style>
 <div class="container in_top index">
       @include('common._message')
-    <div class="jumbotron content-lamp" >
-            <ul>
+    <div class="container">
+        <div class="alert alert-success" role="alert" style="text-align: left;font-size: none;">
+            <p class="alert-link">色管家，您的专业贴身品茶管家，专注私人夜娱定制❤</p>
+        </div>
+        <div class="dowebok str_wrap" style="height: 250px;">
+            <div class="str_move str_origin" style="left: 6.96px;">
                 @foreach($carousels as $carousel)
-                <li><a href="{{ route('topices.show',$carousel->topice_id) }}"><img src="{{ $carousel->image }}"></a></li>
+                    <a href="{{ route('topices.show',$carousel->topice_id) }}"><img src="{{ $carousel->image }}" alt=""></a>
                 @endforeach
-            </ul>
+            </div>
+        </div>
     </div>
 </div>
 <!-- 内容 -->
@@ -57,24 +46,26 @@
                     <li class="clearfix">
                         <div class="new-content">
                             <a href="{{ route('topices.show',[$topice->id])}}" class="title">{{ $topice->title }}</a>
-                            {{-- @if($topice->picture)
-                            <div class="newspic">
-                                <a href="" >
-                                    <img src="{{ $topice->picture }}">
-                                </a>
-                            </div>
-                            @endif --}}
                             <div class="flex_img">
-                                <p>{!! $topice->body !!}</p>
+                                <p>{{ preg_replace('/简介：/','&nbsp;&nbsp;',$topice->excerpt) }}</p>
+                                <p>
+                                    @if($topice->pictures)
+                                        @foreach($topice->pictures as $picture)
+                                        <a href="{{ route('topices.show',[$topice->id]) }}" >
+                                            <img src="{{ $picture }}" style="max-width:30% !important;margin: 3px;">
+                                        </a>
+                                        @endforeach
+                                    @endif
+                                </p>
                                 @foreach($topice->tabs as $tab)
                                 <a href="javascript:;"><span class="badge badge-primary">{{ $tab->tabname }}</span></a>
                                 @endforeach
+                                <p>分类: <a  style="color:#333;" href="{{ route('topices.index',['province'=>$topice->proviArea->spell,'category'=> $topice->category_id ]) }}">{{ $topice->category->name }}</a></p>
                             </div>
                             <div class="tool">
-                                <span title="分类"><a href="" style="color: #b4b4b4;"><i class="fa fa-bars" aria-hidden="true"></i> {{ $topice->category->name }} </span></a>
                                 <span title="地区"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{$topice->proviArea->name }} - {{ $topice->cityArea->name }}</span>
                                 <span title="浏览数"><i class="fa fa-eye fa-lg"></i> {{ $topice->view_count }}</span>
-                                {{-- <span title="评论数"><i class="fa fa-comment comment-lg"></i> {{ $topice->comment_count }}</span> --}}
+                                <span title="评论数"><i class="fa fa-comment comment-lg"></i> {{ $topice->comment_count }}</span>
                                 <span title="发帖时间"><i class="fa fa-clock-o"></i> {{ $topice->created_at->diffForHumans() }}</span>
                             </div>
                         </div>
@@ -83,6 +74,12 @@
                 </ul>
             </div>
         </div>
+         <nav class="news-lis">
+                    {{ $topices->links() }}
+        </nav>
+        {{-- <div class="more">
+            <button class="more-button">加载更多</button>
+        </div> --}}
     </div>
     <!-- 侧边专区 -->
     <div class="con_right index">
@@ -105,25 +102,13 @@
     </div>
 </div>
 @section('scripts')
+    <script src="{{ asset('js/jquery.limarquee.js') }}"></script>
 <script>
     $(document).ready(function(){
-        function lamp() {
-            $(".content-lamp ul").animate({"margin-left":"-256px"}, function() {
-                $(".content-lamp ul li:eq(0)").appendTo($(".content-lamp ul"));
-                $(".content-lamp ul").css({"margin-left": 0});
-            });
-        }
-
-        var scrolling = setInterval(lamp, 2000);
-
-        $('.content-lamp').hover(function() {
-            clearInterval(scrolling);
-        }, function() {
-            scrolling = setInterval(lamp, 2000);
-        });
+        $('.dowebok').liMarquee({ scrollamount: 80, hoverstop: true });
     });
 </script>
 @endsection
-@include('common._tell')
+{{-- @include('common._tell') --}}
 @include('common._backtop')
 @stop

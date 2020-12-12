@@ -3,14 +3,6 @@
 @section('title',$area->name . '楼凤信息')
 
 @section('content')
-<style>
-    .flex_img img {
-        max-width:30% !important;
-    }
-    .flex_img p{
-        display: inline;
-    }
-</style>
 <div class="container con_padding con_la in_top">
     <div class="con_left content_left">
         <ul class="breadcrumb dh">
@@ -98,9 +90,21 @@
                     <li class="clearfix">
                         <div class="new-content">
                             <a href="{{ route('topices.show',[$topice->id])}}" class="title">{{ $topice->title }}</a>
-                            <div class="flex_img">
-                                <p>{!! $topice->body !!}</p>
-                                <p>分类：</p>
+                             <div class="flex_img">
+                                <p>{{ preg_replace_array('/简介：/','',$topice->excerpt)}}</p>
+                                <p>
+                                    @if($topice->pictures)
+                                        @foreach($topice->pictures as $picture)
+                                        <a href="{{ route('topices.show',[$topice->id]) }}" >
+                                            <img src="{{ $picture }}" style="max-width:30% !important;margin: 3px;">
+                                        </a>
+                                        @endforeach
+                                    @endif
+                                </p>
+                                @foreach($topice->tabs as $tab)
+                                <a href="javascript:;"><span class="badge badge-primary">{{ $tab->tabname }}</span></a>
+                                @endforeach
+                                <p>分类: <a  style="color:#333;" href="{{ route('topices.index',['province'=>$topice->proviArea->spell,'category'=> $topice->category_id ]) }}">{{ $topice->category->name }}</a></p>
                             </div>
                             <div class="tool">
                                 <span title="地区"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{ $topice->cityArea->name }} - {{ $topice->countyArea->name }}</span>
@@ -129,10 +133,4 @@
 @stop
 
 @section('scripts')
-<script>
-     $(document).ready(function(){
-
-    });
-
-</script>
 @stop

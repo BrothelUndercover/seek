@@ -159,7 +159,6 @@
                                 @enderror
                             </div>
                             <textarea name="body" hidden="hidden" id="area_body"></textarea>
-                            <input type="hidden" name="picture" id="topice_img">
                         </div>
                         <button type="submit" id="push" class="btn btn-rele">发布</button>
                     </form>
@@ -194,7 +193,7 @@
         //上传成功的图片插入编辑器
         customInsert: function(insertImgFn,result){
             insertImgFn(result.data['path'])
-            $("#topice_img").val(result.data['path'])
+            // $("#topice_img").val(result.data['path'])
         }
     }
     editor.config.onchange = function (newHtml) {

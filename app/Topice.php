@@ -7,20 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class Topice extends Model
 {
     protected $fillable = [
-        'title', 'excerpt', 'province', 'city','county','contact','consumer_price','body','user_id','category_id','picture','contact_address'
+        'title', 'excerpt', 'province', 'city','county','contact','consumer_price','body','user_id','category_id','picture','contact_address','pictures'
     ];
 
-    // public function setPicturesAttribute($pictures)
-    // {
-    //     if (is_array($pictures)) {
-    //          $this->attributes['pictures'] = json_encode($pictures);
-    //     }
-    // }
+    public function setPicturesAttribute($pictures)
+    {
+        if (is_array($pictures)) {
+             $this->attributes['pictures'] = json_encode($pictures);
+        }
+    }
 
-    // public function getPicturesAttribute($pictures)
-    // {
-    //     return json_decode($pictures, true);
-    // }
+    public function getPicturesAttribute($pictures)
+    {
+        return json_decode($pictures, true);
+    }
 
     // public static function boot()
     // {

@@ -46,7 +46,7 @@ class TopicesController extends Controller
     public function show(Request $request,Topice $topice)
     {
         $topice->addViewCount();
-        $topices = Topice::topiceRelated($topice->city)->get();
+        $topices = Topice::topiceRelated($topice->city)->orderBy('created_at','desc')->take(18)->get();
         return view('topices.show',compact('topice','topices'));
     }
 
@@ -70,7 +70,6 @@ class TopicesController extends Controller
             'province'  => $request->province,
             'city'      => $request->city,
             'county'    => $request->county,
-            'picture'  => $request->picture,
             'consumer_price'    => $request->consumer_price,
             'contact'   => $request->contact,
             'contact_address'   => $request->contact_address,

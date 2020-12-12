@@ -21,7 +21,7 @@
             </div>
             <div class="modal-body" style="font-size:18px;">
                 请牢记我们的防封域名<br>
-                <span style="color:red;font-size:23px;">https://fenglou.info</span>
+                <span style="color:red;font-size:23px;">https:</span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

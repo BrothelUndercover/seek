@@ -49,7 +49,7 @@ class TopiceController extends AdminController
         $grid->column('county', __('县/区'))->display(function ($countyid) {
             return City::find($countyid)->name;
         });
-        $grid->column('contact', __('联系'));
+        $grid->column('contact', __('联系'))->width(100)->limit(30);
         $grid->column('consumer_price', __('消费介绍'));
         $grid->column('body', __('具体描述'))->hide();
         $grid->column('user_id', __('发帖人'))->display(function($userid){
