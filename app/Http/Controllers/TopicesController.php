@@ -16,7 +16,7 @@ class TopicesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth',['only' => ['create','store','uploadImage','show']]);
+        $this->middleware('auth',['only' => ['create','store','uploadImage']]);
     }
 
     public function index(Request $request)

@@ -52,7 +52,7 @@
                                     @if($topice->pictures)
                                         @foreach($topice->pictures as $picture)
                                         <a href="{{ route('topices.show',[$topice->id]) }}" >
-                                            <img src="{{ $picture }}" style="max-width:30% !important;margin: 3px;">
+                                            <img src="{{ $picture }}" class="img-thumbnail" style="max-width:20% !important;margin: 3px;">
                                         </a>
                                         @endforeach
                                     @endif
@@ -60,7 +60,7 @@
                                 @foreach($topice->tabs as $tab)
                                 <a href="javascript:;"><span class="badge badge-primary">{{ $tab->tabname }}</span></a>
                                 @endforeach
-                                <p>分类: <a  style="color:#333;" href="{{ route('topices.index',['province'=>$topice->proviArea->spell,'category'=> $topice->category_id ]) }}">{{ $topice->category->name }}</a></p>
+                                <p>分类: <a  style="color:#333;" href="{{ route('topices.index',['province'=>$topice->proviArea->spell,'category'=> $topice->category_id]) }}">{{ $topice->category->name }}</a></p>
                             </div>
                             <div class="tool">
                                 <span title="地区"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{$topice->proviArea->name }} - {{ $topice->cityArea->name }}</span>

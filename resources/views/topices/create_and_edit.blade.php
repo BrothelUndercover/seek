@@ -14,6 +14,9 @@
                     <span class="re_i col-lg-1 col-sm-1 col-xs-1">
                         <i class="fa fa-bullhorn" aria-hidden="true"></i>
                     </span>
+                    <div class="col-lg-11 col-sm-11 col-xs-11">
+                        <p>发布真实小姐信息，经过审核后，管理员会根据您的信息内容质量后给以奖励</p>
+                    </div>
                 </div>
                 <div class="panel-body re_mar_left">
                     <form action="{{ route('topices.store') }}" class="form-horizontal" enctype="multipart/form-data"  method="POST">

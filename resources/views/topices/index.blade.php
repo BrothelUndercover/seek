@@ -91,12 +91,12 @@
                         <div class="new-content">
                             <a href="{{ route('topices.show',[$topice->id])}}" class="title">{{ $topice->title }}</a>
                              <div class="flex_img">
-                                <p>{{ preg_replace_array('/简介：/','',$topice->excerpt)}}</p>
+                                <p>{{ preg_replace('/简介：/','&nbsp;&nbsp;',$topice->excerpt) }}</p>
                                 <p>
                                     @if($topice->pictures)
                                         @foreach($topice->pictures as $picture)
                                         <a href="{{ route('topices.show',[$topice->id]) }}" >
-                                            <img src="{{ $picture }}" style="max-width:30% !important;margin: 3px;">
+                                           <img src="{{ $picture }}" class="img-thumbnail" style="max-width:20% !important;margin: 3px;">
                                         </a>
                                         @endforeach
                                     @endif
