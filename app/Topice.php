@@ -22,15 +22,15 @@ class Topice extends Model
         return json_decode($pictures, true);
     }
 
-    // public static function boot()
-    // {
-    //     parent::boot();
-    //     static::saving(function($model){
-    //         $model->pictures = array_map(function($item){
-    //                return  env('APP_URL').'/uploads/'.$item;
-    //         },$model->pictures);
-    //     });
-    // }
+    public static function boot()
+    {
+        parent::boot();
+        static::saving(function($model){
+            $model->pictures = array_map(function($item){
+                   return  '/'.$item;
+            },$model->pictures);
+        });
+    }
 
     public function user()
     {

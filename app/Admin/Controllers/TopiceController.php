@@ -147,12 +147,12 @@ class TopiceController extends AdminController
         $form->text('contact_address', __('联系地址'));
         $form->text('consumer_price', __('消费介绍'));
         $form->number('order', __('排序'))->default(0);
-        $form->radio('is_hot', __('是否热点'))->options([0 => '否', 1=> '是'])->default(1);
+        $form->switch('is_hot', __('是否热点'))->default(1);
         $form->number('rating', __('星级好评'))->default(10);
         $form->editor('body', __('具体描述'));
         $form->switch('is_check','审核');
         // $form->image('picture', __('封面'))->sortable()->removable();
-        // $form->multipleImage('pictures', __('照片集'))->sortable()->removable();
+        $form->multipleImage('pictures', __('照片集'))->sortable()->removable();
 
         return $form;
     }

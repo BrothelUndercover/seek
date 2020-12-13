@@ -41,7 +41,7 @@ class TopiceFormat extends Command
     public function handle()
     {
         $ql = new QueryList;
-        DB::table('topices')->orderBy('id')->chunk(100,function($topices) use ($ql){
+        DB::table('topices')->where('format',false)->orderBy('id')->chunk(100,function($topices) use ($ql){
             foreach ($topices as $key => $topice) {
                $html = $ql->html($topice->body);
                $excerpt = $html->find('p:eq(0)')->text();
@@ -52,7 +52,7 @@ class TopiceFormat extends Command
                        $images[$i] = $html->find('img')->eq($i)->src;
                    }
                }
-               DB::table('topices')->where('id',$topice->id)->update(['excerpt' => $excerpt,'pictures'=> $images]);
+               DB::table('topices')->where('id',$topice->id)->update(['excerpt' => $excerpt,'pictures' => $images,'format' => true]);
                unset($excerpt);
                unset($images);
                unset($picNum);

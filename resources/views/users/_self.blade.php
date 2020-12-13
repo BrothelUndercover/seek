@@ -2,7 +2,7 @@
     <div class="form-group line-down">
         <label for="inputEmail3" class="col-sm-2 control-label text-align">用户名:</label>
         <div class="col-sm-10">
-            <p class="form-control-static">{{ $user->name }} <i style="margin-left: 10px;">{{ $user->last_actived_at->diffForHumans() }}在线</i></p>
+            <p class="form-control-static">{{ $user->name }}</p>
         </div>
     </div>
     <div class="form-group line-down">
@@ -61,9 +61,9 @@
         </div>
     </div>
     <div class="form-group line-down">
-        <label class="col-sm-2 control-label text-align">最后活动时间:</label>
+        <label class="col-sm-2 control-label text-align">最后活跃时间:</label>
         <div class="col-sm-10">
-            <p class="form-control-static">{{ $user->last_actived_at }}</p>
+            <p class="form-control-static">{{ $user->last_actived_at->diffForHumans() }}</p>
         </div>
     </div>
      <div class="form-group line-down">

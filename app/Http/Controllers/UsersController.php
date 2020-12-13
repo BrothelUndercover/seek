@@ -18,7 +18,7 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth',['except' =>['show']]);
+        $this->middleware('auth',['only' =>['show']]);
 
         $this->vipTime = ['1' => 1,'2'=> 3 ,'3'=> 12, '4' => '240'];
     }

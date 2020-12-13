@@ -48,23 +48,44 @@
                     </li>
                     <li>
                         <span class="con_pr_tit">联系方式：</span>
-                        @if(Auth::check() && Auth::user()->vip_type)
-                            <span class="con_sen">{{ $topice->contact }}</span>
-                        @else
+                        @guest
                             <blockquote class="blockdown">
-                                <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['stype'=>'vip'])}}" class="erphpdown-vip">升级VIP</a></strong>
+                                    <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['stype'=>'vip'])}}" class="erphpdown-vip">请先登录</a></strong>
                             </blockquote>
-                        @endif
+                        @else
+                            @if(!Auth::user()->vip_type)
+                                <blockquote class="blockdown">
+                                    <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['stype'=>'vip'])}}" class="erphpdown-vip">升级VIP</a></strong>
+                                </blockquote>
+                            @elseif(Auth::user()->vip_expire_at < now()->toDateTimeString())
+                                <blockquote class="blockdown">
+                                    <strong>您的VIP已到期,为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['stype'=>'vip'])}}" class="erphpdown-vip">续费VIP</a></strong>
+                                </blockquote>
+                            @else
+                                <span class="con_sen">{{ $topice->contact }}</span>
+                            @endif
+                        @endguest
                     </li>
                     <li>
                         <span class="con_pr_tit">详细地址：</span>
-                        @if(Auth::check() && Auth::user()->vip_type)
-                            <span class="con_sen">{{ $topice->contact_address }}</span>
-                        @else
+                        @guest
                             <blockquote class="blockdown">
-                                <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['stype'=>'vip'])}}" class="erphpdown-vip">升级VIP</a></strong>
+                                    <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['stype'=>'vip'])}}" class="erphpdown-vip">请先登录</a></strong>
                             </blockquote>
-                        @endif
+
+                        @else
+                            @if(!Auth::user()->vip_type)
+                               <blockquote class="blockdown">
+                                   <strong>为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['stype'=>'vip'])}}" class="erphpdown-vip">升级VIP</a></strong>
+                               </blockquote>
+                            @elseif(Auth::user()->vip_expire_at < now()->toDateTimeString())
+                                <blockquote class="blockdown">
+                                    <strong>您的VIP已到期,为了保证信息的高品质,此信息仅限VIP查看<a href="{{ route('users.show',['stype'=>'vip'])}}" class="erphpdown-vip">续费VIP</a></strong>
+                                </blockquote>
+                            @else
+                                <span class="con_sen">{{ $topice->contact_address }}</span>
+                            @endif
+                        @endguest
                     </li>
   {{--                   <li>
                         <span class="con_pr_tit">信息价格：</span>
