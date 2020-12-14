@@ -15,7 +15,7 @@ class Order extends Model
 
      public function memberShip()
      {
-        return $this->belongsTo('App\Membership');
+        return $this->belongsTo('App\Membership','ship_id');
      }
 
      public function card()

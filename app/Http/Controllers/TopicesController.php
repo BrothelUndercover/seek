@@ -37,7 +37,7 @@ class TopicesController extends Controller
                         return $query->where('county',$countyId);
                     })
                     ->where('is_check',true)
-                    ->paginate(20);
+                    ->paginate(15);
         $categories = Category::all();
 
         return view('topices.index',compact('topices','area','categories','request'));

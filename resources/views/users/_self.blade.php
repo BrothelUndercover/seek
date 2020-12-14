@@ -35,9 +35,13 @@
                 普通用户
             {{--     &nbsp;&nbsp;<a href="" class="btn btn-default btn-style">充值</a> --}}
                 &nbsp;&nbsp;<a href="javascript:;" onclick="activateVip()" class="btn btn-default btn-style">激活会员</a>
-            @elseif($user->vip_type)
+            @elseif($user->vip_type && $user->vip_expire_at > now()->toDateTimeString())
                 <span style="color: red;font-size: 18px;margin-right:10px;">VIP会员</span>
                 <span>会员到期时间: <i style="color:red;">{{ $user->vip_expire_at }}</i></span>
+            @elseif($user->vip_type && $user->vip_expire_at < now()->toDateTimeString())
+                <span style="font-size: 18px;margin-right:10px;">普通会员</span>
+                <span>您的会员已到期,到期时间:<i style="color:red;">{{ $user->vip_expire_at }}</i></span>
+                 &nbsp;&nbsp;<a href="javascript:;" onclick="activateVip()" class="btn btn-default btn-style">激活会员</a>
             @endif
             </p>
         </div>

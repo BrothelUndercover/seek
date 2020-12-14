@@ -52,7 +52,7 @@
                                     @if($topice->pictures)
                                         @foreach($topice->pictures as $picture)
                                         <a href="{{ route('topices.show',[$topice->id]) }}" >
-                                            <img src="{{ $picture }}" class="img-thumbnail" style="max-width:20% !important;margin: 3px;">
+                                            <img src="{{ $picture }}" class="img-thumbnail" style="max-width:28% !important;margin: 3px;">
                                         </a>
                                         @endforeach
                                     @endif
@@ -75,10 +75,10 @@
             </div>
         </div>
          <nav class="news-lis">
-                    {{ $topices->links() }}
+         {{ $topices->links() }}
         </nav>
         {{-- <div class="more">
-            <button class="more-button">加载更多</button>
+            <button class="more-button loadmore">加载更多</button>
         </div> --}}
     </div>
     <!-- 侧边专区 -->

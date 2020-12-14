@@ -15,10 +15,10 @@
                 <span><i class="fa fa-vimeo"></i></span>
                 <a href="{{ route('users.show',['stype' => 'vip' ]) }}">充值VIP</a>
             </li>
-{{--             <li class="list-group-item dis_cona {{ $type == 'order' ? "conac_on" : ''}}">
+            <li class="list-group-item dis_cona {{ $type == 'order' ? "conac_on" : ''}}">
                 <span><i class="fa fa-file-text-o"></i></span>
                 <a href="{{ route('users.show',['stype' => 'order' ]) }}">我的订单</a>
-            </li> --}}
+            </li>
             <li class="list-group-item dis_cona {{ $type == 'share' ? "conac_on" : ''}} ">
                 <span><i class="fa fa-share"></i></span>
                 <a href="{{ route('users.show',['stype' => 'share' ]) }}">我的分享</a>

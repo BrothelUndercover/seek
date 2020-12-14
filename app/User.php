@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Topice;
+use App\Membership;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -108,5 +109,10 @@ class User extends Authenticatable implements JWTSubject
     public function orders()
     {
         return $this->hasMany('App\Order','user_id');
+    }
+
+    public function vipTypeNanme($vip_type)
+    {
+        return Membership::find($vip_type)->viptype_name;
     }
 }

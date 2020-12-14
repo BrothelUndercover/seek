@@ -15,8 +15,7 @@ class PagesController extends Controller
         $topices = $topice->withOrder('default')
                           ->with('user','proviArea','cityArea','countyArea','category','tabs')
                           ->where('is_check',true)
-                          ->paginate(30);
-        // dump($topices);
+                          ->paginate(15);
          $hotCities = City::with('upperLevel')->where('hot',true)->get();
          $carousels = Carousel::where('status',true)->get();
         return view('pages.root',compact('topices','topice','hotCities','carousels'));
@@ -25,7 +24,6 @@ class PagesController extends Controller
     //地区
     public function region()
     {
-        // City::with('childRecursive')->find(3);
         $provinces = City::with('provTopices')->where('pid',1)->get();//省份
         return view('pages.region',compact('provinces'));
     }

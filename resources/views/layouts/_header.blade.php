@@ -63,12 +63,12 @@
                                 充值VIP
                             </a>
                         </li>
-                       {{--  <li>
+                        <li>
                             <a href="{{ route('users.show',['stype' => 'order']) }}">
                                 <i class="fa fa-file-text-o"></i>
                                 我的订单
                             </a>
-                        </li> --}}
+                        </li>
                         <li>
                             <a href="{{ route('users.show',['stype' => 'share']) }}">
                                 <i class="fa fa-share"></i>

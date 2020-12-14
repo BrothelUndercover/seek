@@ -26,8 +26,9 @@ class UsersController extends Controller
     public function show(Request $request,User $user)
     {
         $ships = Membership::all();
-
-        return view('users.show',['type'=>$request->stype,'ships'=>$ships,'user'=>\Auth()->user()]);
+        $user = \Auth()->user();
+        $orders = $user->orders;
+        return view('users.show',['type'=>$request->stype,'ships' => $ships,'user'=> $user,'orders' => $orders]);
     }
 
     public function checkSecret(Request $request)
