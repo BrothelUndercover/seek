@@ -74,9 +74,6 @@
                 </ul>
             </div>
         </div>
-        {{--  <nav class="news-lis">
-         {{ $topices->links() }}
-        </nav> --}}
         <div class="more">
             <button class="more-button loadmore">加载更多</button>
         </div>
@@ -97,7 +94,18 @@
         </div>
         <div class="list-group list_box border_con">
            {{-- 热门推荐 --}}
-           @include('topices._hot',['hotTopices'=> $topice->withOrder('ishot')->take(30)->get()])
+           @include('topices._hot',['hotTopices'=> $topice->withOrder('ishot')->take(20)->get()])
+        </div>
+        {{-- 友情链接 --}}
+        <div class="list-group list_box border_con">
+            <div class="list-group-item List_float list_likes cont_float" style="font-size: 17px;">
+                <div class="bs-callout bs-callout-info">
+                    <span>友情链接</span>
+                </div>
+            </div>
+          <ul class="tj_list">
+                <li></li>
+            </ul>
         </div>
     </div>
 </div>

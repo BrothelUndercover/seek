@@ -40,6 +40,7 @@ class TopiceFormat extends Command
      */
     public function handle()
     {
+        $this->info('开始格式化');
         $ql = new QueryList;
         DB::table('topices')->where('format',false)->orderBy('id')->chunk(100,function($topices) use ($ql){
             foreach ($topices as $key => $topice) {
