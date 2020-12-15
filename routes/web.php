@@ -3,6 +3,7 @@
 //return response('', 404);
 Route::middleware('throttle:60,1')->group(function () {
     Route::get('/', 'PagesController@root')->name('pages.root');
+    Route::get('fatch','PagesController@pageRoot')->name('pages.fatch');
     Route::get('area','PagesController@region')->name('pages.region');
     Route::get('introduce','PagesController@mind')->name('pages.jieshao');
     //用户登录相关

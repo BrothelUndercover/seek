@@ -74,12 +74,12 @@
                 </ul>
             </div>
         </div>
-         <nav class="news-lis">
+        {{--  <nav class="news-lis">
          {{ $topices->links() }}
-        </nav>
-        {{-- <div class="more">
+        </nav> --}}
+        <div class="more">
             <button class="more-button loadmore">加载更多</button>
-        </div> --}}
+        </div>
     </div>
     <!-- 侧边专区 -->
     <div class="con_right index">
@@ -106,6 +106,59 @@
 <script>
     $(document).ready(function(){
         $('.dowebok').liMarquee({ scrollamount: 80, hoverstop: true });
+        var p = 1;
+        $(".loadmore").click(function(){
+            p++;
+           axios.get('{{ route('pages.fatch') }}', {
+               params: {
+                 page: p
+               }
+             })
+             .then(function (response) {
+               var data = response.data;
+               if (data.code == 1) {
+                    for (let index in data.topices.data) {
+                            console.log(data.topices.data[index].title);
+                        let images = '';
+                        let tabs = '';
+                        let topiceUrl = '{{ route('topices.show',['topice'=> 'topiceid']) }}'.replace('topiceid',data.topices.data[index].id);
+                        let categoryUrl = '{{ route('topices.index',['province'=>'province','category'=> '0'])}}'.replace('province',data.topices.data[index].provi_area.spell);
+                        for (let i = 0; i < data.topices.data[index].pictures.length; i++) {
+                                  images +=  `<a href="`+topiceUrl+`">
+                                        <img src="`+data.topices.data[index].pictures[i]+`" class="img-thumbnail" style="max-width:28% !important;margin: 3px;">
+                                    </a>`
+                                }
+                        for (let j = 0; j < data.topices.data[index].tabs.length; j++) {
+                            tabs += `<a href="javascript:;"><span class="badge badge-primary">`+ data.topices.data[index].tabs[j].tabname +`</span></a>`
+                        }
+                        let html = `<li class="clearfix">
+                        <div class="new-content">
+                            <a href="`+topiceUrl+`" class="title">`+data.topices.data[index].title+`</a>
+                            <div class="flex_img">
+                                <p>`+data.topices.data[index].excerpt+`</p>
+                                <p>`+images+`</p>
+                                `+ tabs +`
+                                <p>分类: <a  style="color:#333;" href="`+ categoryUrl+`">`+data.topices.data[index].category.name+`</a></p>
+                            </div>
+                            <div class="tool">
+                                <span title="地区"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;`+data.topices.data[index].provi_area.name+` -`+data.topices.data[index].city_area.name+`</span>
+                                <span title="浏览数"><i class="fa fa-eye fa-lg"></i>&nbsp;`+data.topices.data[index].view_count+`</span>
+                                <span title="评论数"><i class="fa fa-comment comment-lg"></i>&nbsp;`+data.topices.data[index].comment_count+`</span>
+                                <span title="发帖时间"><i class="fa fa-clock-o"></i>&nbsp;`+data.topices.data[index].created_at+`</span>
+                            </div>
+                        </div>
+                    </li>`
+                        $("#news-lis").append(html);
+                    }
+               } else {
+                    $(".more").append('<p style="text-align:center;font-size:16px;">请求异常</p>');
+                    $(".loadmore").remove();
+               }
+             })
+             .catch(function (error) {
+               console.log(error);
+             });
+        })
     });
 </script>
 @endsection

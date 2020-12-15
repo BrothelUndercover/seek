@@ -11,7 +11,7 @@ return [
     | login page.
     |
     */
-    'name' => 'Yi-Hong-Yuan',
+    'name' => 'Domo-Admin',
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo' => '<b>Yi-Hong-Yuan</b>',
+    'logo' => '<b>Domo</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ return [
     | '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo-mini' => '<b>Yuan</b>',
+    'logo-mini' => '<b>domo</b>',
 
     /*
     |--------------------------------------------------------------------------

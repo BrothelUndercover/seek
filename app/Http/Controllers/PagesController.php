@@ -15,12 +15,23 @@ class PagesController extends Controller
         $topices = $topice->withOrder('default')
                           ->with('user','proviArea','cityArea','countyArea','category','tabs')
                           ->where('is_check',true)
-                          ->paginate(15);
+                          ->take(12)
+                          ->get();
          $hotCities = City::with('upperLevel')->where('hot',true)->get();
          $carousels = Carousel::where('status',true)->get();
         return view('pages.root',compact('topices','topice','hotCities','carousels'));
     }
 
+    public function pageRoot(Request $request,Topice $topice){
+        if(request()->ajax()){
+            $topices = $topice->withOrder('default')
+                      ->with('user','proviArea','cityArea','countyArea','category','tabs')
+                      ->where('is_check',true)
+                      ->paginate(12);
+                return response()->json(['topices' => $topices,'code' => 1]);
+        }
+        return response()->json(['topices' => '','code' => -1]);
+    }
     //地区
     public function region()
     {
