@@ -28,7 +28,9 @@ class CarouselController extends AdminController
         $grid = new Grid(new Carousel());
 
         $grid->column('id', __('Id'));
-        $grid->column('image', __('Image'))->image();
+        $grid->column('image', __('Image'))->display(function($image){
+            return '<img width="160" src='.env('APP_URL').$image.'>';
+        });
         $grid->column('topice_id', __('帖子'))->display(function ($topiceid) {
             return Topice::find($topiceid)->title;
         });
