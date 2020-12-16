@@ -11,14 +11,15 @@
 .content-lamp{/*width: 960px;*/height: 200px;overflow: hidden;margin: auto;margin-bottom: 18px;}
 .dowebok {width: 100%;margin: 5px auto;font-size: 0;}
 .dowebok img {margin-left: 10px;vertical-align: top;height: 180px;width: 250px;}
-.more {clear:both; margin: 0 auto;text-align: center;line-height: 25px;}
-.more-button{ width:48%;height:30px;line-height: 25px; border:none;border-radius: 16px;background: #ccc;margin-bottom: 10px;}
+.more {clear:both; margin: 0 auto;text-align: center;line-height: 25px;margin-bottom: 19px;}
+.more-button{ width:48%;height:42px;line-height: 25px; border:none;border-radius: 18px;background: #ccc;margin: 0 auto;}
 .more-button:focus,
 .more-button:active:focus,
 .more-button.active:focus,
 .more-button.focus,
 .more-button:active.focus,
 .more-button.active.focus {outline: none;border-color: transparent;box-shadow:none;}
+#loading img{margin: 0 auto}
 </style>
 <div class="container in_top index">
       @include('common._message')
@@ -75,7 +76,8 @@
             </div>
         </div>
         <div class="more">
-            <button class="more-button loadmore">加载更多</button>
+            <h3 id="loading"><img class="hidden" src="{{ asset('loading.gif')}}" alt="加载中..."></h3>
+            <button class="more-button loadmore show">加载更多</button>
         </div>
     </div>
     <!-- 侧边专区 -->
@@ -114,8 +116,11 @@
 <script>
     $(document).ready(function(){
         $('.dowebok').liMarquee({ scrollamount: 80, hoverstop: true });
+
         var p = 1;
         $(".loadmore").click(function(){
+            $('.more button').removeClass('show');
+            $("#loading img").removeClass('hidden').addClass('show');
             p++;
            axios.get('{{ route('pages.fatch') }}', {
                params: {
@@ -126,7 +131,6 @@
                var data = response.data;
                if (data.code == 1) {
                     for (let index in data.topices.data) {
-                            console.log(data.topices.data[index].title);
                         let images = '';
                         let tabs = '';
                         let topiceUrl = '{{ route('topices.show',['topice'=> 'topiceid']) }}'.replace('topiceid',data.topices.data[index].id);
@@ -158,6 +162,8 @@
                     </li>`
                         $("#news-lis").append(html);
                     }
+                          $("#loading img").removeClass('show').addClass('hidden');
+                          $('.more button').removeClass('hidden');
                } else {
                     $(".more").append('<p style="text-align:center;font-size:16px;">请求异常</p>');
                     $(".loadmore").remove();
@@ -166,7 +172,7 @@
              .catch(function (error) {
                console.log(error);
              });
-        })
+        });
     });
 </script>
 @endsection
