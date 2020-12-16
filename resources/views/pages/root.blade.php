@@ -77,7 +77,7 @@
         </div>
         <div class="more">
             <h3 id="loading"><img class="hidden" src="{{ asset('loading.gif')}}" alt="加载中..."></h3>
-            <button class="more-button loadmore show">加载更多</button>
+            <button class="more-button loadmore">加载更多</button>
         </div>
     </div>
     <!-- 侧边专区 -->
@@ -119,7 +119,7 @@
 
         var p = 1;
         $(".loadmore").click(function(){
-            $('.more button').removeClass('show');
+            $('.more button').addClass('hidden');
             $("#loading img").removeClass('hidden').addClass('show');
             p++;
            axios.get('{{ route('pages.fatch') }}', {
