@@ -25,7 +25,9 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.11.1",
         "clipboard": "^2.0.6",
+        "dayjs": "^1.9.7",
         "marked": "^1.2.3",
+        "moment": "^2.29.1",
         "nprogress": "^0.2.0",
         "simplemde": "^1.11.2",
         "wangeditor": "^4.3.0"

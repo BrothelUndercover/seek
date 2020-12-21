@@ -116,7 +116,7 @@
 <script>
     $(document).ready(function(){
         $('.dowebok').liMarquee({ scrollamount: 80, hoverstop: true });
-
+            moment.locale('zh-cn');
         var p = 1;
         $(".loadmore").click(function(){
             $('.more button').addClass('hidden');
@@ -147,7 +147,7 @@
                         <div class="new-content">
                             <a href="`+topiceUrl+`" class="title">`+data.topices.data[index].title+`</a>
                             <div class="flex_img">
-                                <p>`+data.topices.data[index].excerpt+`</p>
+                                <p>`+data.topices.data[index].excerpt.replace('简介：\n','&nbsp;&nbsp;')+`</p>
                                 <p>`+images+`</p>
                                 `+ tabs +`
                                 <p>分类: <a  style="color:#333;" href="`+ categoryUrl+`">`+data.topices.data[index].category.name+`</a></p>
@@ -156,7 +156,7 @@
                                 <span title="地区"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;`+data.topices.data[index].provi_area.name+` -`+data.topices.data[index].city_area.name+`</span>
                                 <span title="浏览数"><i class="fa fa-eye fa-lg"></i>&nbsp;`+data.topices.data[index].view_count+`</span>
                                 <span title="评论数"><i class="fa fa-comment comment-lg"></i>&nbsp;`+data.topices.data[index].comment_count+`</span>
-                                <span title="发帖时间"><i class="fa fa-clock-o"></i>&nbsp;`+data.topices.data[index].created_at+`</span>
+                                <span title="发帖时间"><i class="fa fa-clock-o"></i>&nbsp;`+ moment().to(moment(data.topices.data[index].created_at))+`</span>
                             </div>
                         </div>
                     </li>`

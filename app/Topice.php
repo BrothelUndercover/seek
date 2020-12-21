@@ -26,9 +26,11 @@ class Topice extends Model
     {
         parent::boot();
         static::saving(function($model){
-            $model->pictures = array_map(function($item){
+            if ($model->picturesition) {
+                $model->pictures = array_map(function($item){
                    return  '/'.$item;
-            },$model->pictures);
+                },$model->pictures);
+            }
         });
     }
 
