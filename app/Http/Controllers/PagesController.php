@@ -10,15 +10,15 @@ use App\Carousel;
 
 class PagesController extends Controller
 {
-    public function root(Request $request, Topice $topice, User $user, City $city)
+    public function root(Request $request, Topice $topice, User $user, City $city,Carousel $carousel)
     {
         $topices = $topice->withOrder('default')
                           ->with('user','proviArea','cityArea','countyArea','category','tabs')
                           ->where('is_check',true)
                           ->take(12)
                           ->get();
-         $hotCities = City::with('upperLevel')->where('hot',true)->get();
-         $carousels = Carousel::where('status',true)->get();
+         $hotCities = $city->getHotCitys();
+         $carousels = $carousel->getCarousel();
         return view('pages.root',compact('topices','topice','hotCities','carousels'));
     }
 

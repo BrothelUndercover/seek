@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class City extends Model
 {
+    protected $hotCityCacheKey = 'hotcity';
+
     public function child()
     {
         return $this->hasMany(self::class,'pid');
@@ -34,5 +37,13 @@ class City extends Model
     public function countyTopices()
     {
         return $this->hasMany('App\Topice','county','id');
+    }
+
+    public function getHotCitys()
+    {
+        if (!Cache::has($this->hotCityCacheKey)) {
+            return self::with('upperLevel')->where('hot',true)->get();
+        }
+        return Cache::get($this->hotCityCacheKey);
     }
 }
