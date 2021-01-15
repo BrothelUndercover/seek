@@ -1,18 +1,16 @@
 @extends('layouts.app')
 @section('title', setting('seo_description','分享楼凤兼职，酒店会所，桑拿洗浴，全国楼凤'))
-
-@section('styles')
-
-@stop
-
 @section('content')
 <div class="container con_padding con_la in_top">
     <div class="con_left content_left">
         <ul class="breadcrumb dh">
             <li>当前位置： <a href="{{ route('pages.root') }}">首页</a></li>
             <li>搜索</li>
-            <li class="active">{{ $request->q }}</li>
+            <li class="active">{{ Request::input('query') }}</li>
         </ul>
+        <p style="font-size:11px;color:#808080;text-align:left">
+        <span class="" style="margin:3px;"></span>为您找到相关结果{{$topices->total() }}个
+        </p>
         <div class="con_tab">
             <!-- 下部内容1 -->
             <div class="list-container" style="display: block">
@@ -22,16 +20,25 @@
                         <div class="new-content">
                             <a href="{{ route('topices.show',[$topice->id])}}" class="title">{{ $topice->title }}</a>
                             <div class="flex_img">
-                                <p>{!! $topice->body !!}</p>
+                                <p>{{ preg_replace('/简介：/','&nbsp;&nbsp;',$topice->excerpt) }}</p>
+                                <p>
+                                    @if($topice->pictures)
+                                        @foreach($topice->pictures as $picture)
+                                        <a href="{{ route('topices.show',[$topice->id]) }}" >
+                                            <img src="{{ $picture }}" class="img-thumbnail" style="max-width:28% !important;margin: 3px;">
+                                        </a>
+                                        @endforeach
+                                    @endif
+                                </p>
                                 @foreach($topice->tabs as $tab)
                                 <a href="javascript:;"><span class="badge badge-primary">{{ $tab->tabname }}</span></a>
                                 @endforeach
+                                <p>分类: <a  style="color:#333;" href="{{ route('topices.index',['province'=>$topice->proviArea->spell,'category'=> $topice->category_id]) }}">{{ $topice->category->name }}</a></p>
                             </div>
                             <div class="tool">
-                                <span title="分类"><a href="" style="color: #b4b4b4;"><i class="fa fa-bars" aria-hidden="true"></i> {{ $topice->category->name }} </span></a>
                                 <span title="地区"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{$topice->proviArea->name }} - {{ $topice->cityArea->name }}</span>
                                 <span title="浏览数"><i class="fa fa-eye fa-lg"></i> {{ $topice->view_count }}</span>
-                                {{-- <span title="评论数"><i class="fa fa-comment comment-lg"></i> {{ $topice->comment_count }}</span> --}}
+                                <span title="评论数"><i class="fa fa-comment comment-lg"></i> {{ $topice->comment_count }}</span>
                                 <span title="发帖时间"><i class="fa fa-clock-o"></i> {{ $topice->created_at->diffForHumans() }}</span>
                             </div>
                         </div>
@@ -39,7 +46,7 @@
                     @endforeach
                 </ul>
                 <nav class="news-lis">
-                    <ul class="pagination fen_auto" data-pagecount="1" id="pager"></ul>
+                    {{ $topices->links() }}
                 </nav>
             </div>
         </div>

@@ -20,12 +20,30 @@
 .more-button:active.focus,
 .more-button.active.focus {outline: none;border-color: transparent;box-shadow:none;}
 #loading img{margin: 0 auto}
+.pHot a {font-weight: bold;margin: 0px 5px;color: #333;}
+.pHot{font-size:13px;line-height: 25px;}
 </style>
 <div class="container in_top index">
       @include('common._message')
     <div class="container">
         <div class="alert alert-success" role="alert" style="text-align: left;font-size: none;">
             <p class="alert-link">色管家，您的专业贴身品茶管家，专注私人夜娱定制❤</p>
+        </div>
+        <div class="root-search">
+            <form action="{{ route('topices.search') }}" method="GET">
+            <div class="input-group" style="margin:15px auto !important;">
+                    <input type="text" class="form-control" onkeypress="" name="query" value="{{ isset($request->query)? $request->query: '' }}" id="search_keyword" placeholder="输入查询城市,其他关键字">
+                    <span class="input-group-btn">
+                    <button class="btn btn-danger" type="submit">搜索<span class="glyphicon glyphicon-search" style="margin-left:5px;"></span></button>
+                    </span>
+            </div>
+            </form>
+             <p class="pHot">
+                <span class="btn btn-danger btn-sm">热门城市:</span>
+                @foreach($hotCities as $city)
+                    <a href="{{ route('topices.index',['province'=> $city->upperLevel->spell,'category'=> 0,'city'=>$city->id]) }}">{{ $city->name }}</a>
+                @endforeach
+            </p>
         </div>
         <div class="dowebok str_wrap" style="height: 250px;">
             <div class="str_move str_origin" style="left: 6.96px;">
@@ -173,9 +191,17 @@
                console.log(error);
              });
         });
+        //小于820显示搜索框
+         var visibleWidht = $(window).width();
+         if (visibleWidht > 481) {
+            $('.root-search').css({'display': "none"});
+         } else {
+            $('.root-search').css({'display': "block"});
+            $('.app-page-search').addClass('hidden');
+         }
     });
 </script>
 @endsection
 {{-- @include('common._tell') --}}
 @include('common._backtop')
-@stop
+@endsection

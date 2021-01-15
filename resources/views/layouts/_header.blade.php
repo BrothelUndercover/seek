@@ -22,7 +22,7 @@
                 </ul>
                 <form method="GET" action="{{ route('topices.search') }}" class="navbar-form navbar-left">
                     <div class="form-group btn_pos">
-                        <input type="text" value="{{ isset($request->q)? $request->q : '' }}" name="q" class="form-control input_line" placeholder="搜索">
+                        <input type="text" value="{{ Request::input('query')?  Request::input('query') : '' }}" name="query" class="form-control input_line" placeholder="搜索">
                         <button type="submit" class="btn btn_sec "><i class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
                 </form>

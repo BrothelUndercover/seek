@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "babenkoivan/scout-elasticsearch-driver": "^4.2",
         "dingo/api": "2.4.7",
         "encore/laravel-admin": "1.*",
         "erusev/parsedown": "^1.7",
@@ -21,6 +22,7 @@
         "laravel-admin-ext/wang-editor": "1.*",
         "laravel-lang/lang": "~5.0",
         "laravel/framework": "^6.18.35",
+        "laravel/horizon": "3.7.2",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^1.0",
         "laravolt/avatar": "^4.0",

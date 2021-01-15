@@ -12,6 +12,7 @@ use Encore\Admin\Show;
 use App\City;
 use App\Category;
 use App\User;
+use App\Jobs\ImportEs;
 
 
 class TopiceController extends AdminController
@@ -119,7 +120,6 @@ class TopiceController extends AdminController
         $show->field('follower_count', __('关注量'));
         $show->field('created_at', __('创建时间'));
         $show->field('updated_at', __('更新时间'));
-
         return $show;
     }
 

@@ -250,7 +250,7 @@
                     $("#county").append(option);
                 });
             },
-            error: function (x, e) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 layer.msg('请求异常')
             }
         });

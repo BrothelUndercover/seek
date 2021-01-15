@@ -2,13 +2,59 @@
 
 namespace App;
 
+use ScoutElastic\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class Topice extends Model
 {
+    use Searchable;
+
+    protected $indexConfigurator = Elastic\TopicesIndexConfigurator::class;
+
     protected $fillable = [
         'title', 'excerpt', 'province', 'city','county','contact','consumer_price','body','user_id','category_id','picture','contact_address','pictures'
     ];
+
+    protected $mapping = [
+            'properties' => [
+                'title' => [
+                    'type' => 'text',
+                    'analyzer' => 'ik_max_word'
+                ],
+                'excerpt' => [
+                    'type' => 'text',
+                    'analyzer' => 'ik_smart'
+                ],
+                'body' => [
+                    'type' => 'text',
+                    'analyzer' => 'ik_smart'
+                ],
+                'province' => [
+                    'type' => 'keyword',
+                ],
+                'city'  => [
+                    'type'  => 'keyword',
+                ],
+                'county' => [
+                    'type' => 'keyword',
+                ]
+            ]
+        ];
+
+    public function toSearchableArray()
+    {
+        return [
+            'title'=> $this->title,
+            'excerpt'  => $this->excerpt,
+            'body' => $this->body,
+            'province' => $this->proviArea->name ?? $this->province,
+            'city'  => $this->cityArea->name ?? $this->city,
+            'county' => $this->countyArea->name ?? $this->county,
+            'category_id' => $this->category->name,
+            'created_at' => $this->created_at,
+        ];
+    }
+
 
     public function setPicturesAttribute($pictures)
     {
@@ -94,15 +140,6 @@ class Topice extends Model
     public function countyArea()
     {
         return $this->belongsTo('App\City','county');
-    }
-
-    public function scopeSearch($query,$keyword)
-    {
-        return $query->where('title','like',"%$keyword%")
-                ->orWhere('excerpt','like',"%$keyword%")
-                ->orWhere('body','like',"%$keyword%")
-                ->where('is_check',true)
-                ->latest();
     }
 
     public function tabs()

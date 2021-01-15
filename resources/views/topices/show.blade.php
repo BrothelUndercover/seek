@@ -1,6 +1,9 @@
 @extends('layouts.app')
-@section('title',$topice->title)
+@section('title',substr($topice->title,0,6))
 @section('content')
+<style>
+.desc-content img { max-width:99% !important;}
+</style>
 <div class="container con_padding con_la in_top">
     <div class="con_left content_left">
         <ul class="breadcrumb dh">
@@ -106,71 +109,6 @@
                 </div>
             </div>
         </div>
-       {{--  <div class="con_tab xs_le">
-            <div href="#" class="list-group-item color_lis_con cont_float">
-                <div class="content-callout bs-callout-info">
-                    <span>图片信息</span>
-                </div>
-                <div class="content-pic">
-                    <div class="row">
-                        <div class="col-xs-4 col-md-4 col-md-4 con-show-pic">
-                            <img src="{{ asset('uploads/warp/1.jpg') }}" alt="陆地小坦克，谁开谁快乐">
-                        </div>
-                        <div class="col-xs-4 col-md-4 col-md-4 con-show-pic">
-                            <img src="{{ asset('uploads/warp/1.jpg') }}" alt="陆地小坦克，谁开谁快乐">
-                        </div>
-                        <div class="col-xs-4 col-md-4 col-md-4 con-show-pic">
-                            <img src="{{ asset('uploads/warp/1.jpg') }}" alt="陆地小坦克，谁开谁快乐">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
- {{--        <div class="con_tab xs_le">
-            <div class="list-group-item color_lis_con cont_float" style="margin-top:0px;">
-                <p>
-                    <span class="zan">
-                        <a id="Recommend">
-                            <i class="fa fa-thumbs-up " aria-hidden="true"></i>
-                        </a>
-                        <a id="RecommendList"> <span>0</span>人推荐 ></a>
-                    </span>
-                    <span class="zan">
-                        <a id="NoRecommend"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
-                        <a id="NoRecommendList"> <span>0</span>人不推荐 ></a>
-                    </span>
-                </p>
-            </div>
-        </div> --}}
-     {{--    <div>
-        </div> --}}
-     {{--    <div class="con_tab xs_le">
-            <div class="list-group-item color_lis_con cont_float">
-                <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 sc">
-                        <a id="collection" title="收藏">
-                            <i class="fa fa-star-o tu"></i>
-                            <span class="yuan"></span>
-                            <span class="text">收藏</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 sc">
-                        <a id="reward" title="打赏狼友">
-                            <i class="fa fa-jpy tu"></i>
-                            <span class="yuan"></span>
-                            <span class="text">打赏</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 sc">
-                        <a id="report" title="举报">
-                            <i class="fa fa-exclamation tu"></i>
-                            <span class="yuan"></span>
-                            <span class="text">举报</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         <div class="con_tab xs_le">
             <div href="#" class="list-group-item color_lis_con cont_float">
                 <div class="content-callout bs-callout-info">
@@ -232,4 +170,4 @@
         </div>
     </div>
 </div>
-@stop
+@endsection

@@ -81,13 +81,12 @@ class TopicesController extends Controller
             $topice->tabs()->sync($tabs,false);
         return redirect()->to(route('pages.root'))->with('success','发布成功，等待审核');
     }
-    public function search(Request $request,Topice $topice)
+    public function search(Request $request,City $city)
     {
-        $topices = $topice->with('user','proviArea','cityArea','countyArea','category')
-                            ->search($request->q)
-                            ->paginate(6);
-        $hotCities = City::where('hot',true)->get();
-        return view('topices.search',compact('topices','request','hotCities'));
+        $keyword = $request->input('query');
+        $topices = Topice::search($keyword)->with('user','proviArea','cityArea','countyArea','category')->where('is_check',true)->orderBy('created_at','desc')->paginate(12);
+        $hotCities = $city->getHotCitys();
+        return view('topices.search',compact('topices','hotCities'));
     }
 
     public function uploadImage(Request $request,ImageUploadHandler $uploader)

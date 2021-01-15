@@ -33,7 +33,7 @@
                                      共有<b style="color: #f30">{{ count($province->provTopices) }}</b>条信息<br>
                                 </div>
                             </div>
-                            <div class="flex_box">
+                       {{--      <div class="flex_box">
                                 <div class="C-word">
                                     <a href="javascript:myalert();"> <h4><i class="fa fa-jpy" aria-hidden="true"></i>悬赏区</h4></a>
                                      共有<b style="color: #f30">N+1</b>条信息<br>
@@ -50,7 +50,7 @@
                                     <a href="javascript:myalert();"> <h4><i class="fa fa-thumbs-down" aria-hidden="true"></i>曝光区</h4></a>
                                      共有<b style="color: #f30">N+1</b>条信息<br>
                                 </div>
-                            </div>
+                            </div> --}}
                     </div>
                 </div>
             </div>
