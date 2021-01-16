@@ -84,7 +84,7 @@ class TopicesController extends Controller
     public function search(Request $request,City $city)
     {
         $keyword = $request->input('query');
-        $topices = Topice::search($keyword)->with('user','proviArea','cityArea','countyArea','category')->where('is_check',true)->orderBy('created_at','desc')->paginate(12);
+        $topices = Topice::search($keyword)->with('user','proviArea','cityArea','countyArea','category')->orderBy('created_at','desc')->paginate(12);
         $hotCities = $city->getHotCitys();
         return view('topices.search',compact('topices','hotCities'));
     }
