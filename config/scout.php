@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'chunkById' => [
+    'chunk' => [
         'searchable' => 500,
         'unsearchable' => 500,
     ],
