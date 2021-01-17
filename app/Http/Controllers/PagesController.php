@@ -7,7 +7,6 @@ use App\City;
 use App\Topice;
 use App\User;
 use App\Carousel;
-use App\Jobs\ImportEs;
 
 class PagesController extends Controller
 {
