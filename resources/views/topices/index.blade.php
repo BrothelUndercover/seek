@@ -86,6 +86,43 @@
             <!-- 下部内容1 -->
             <div class="list-container" style="display: block">
                 <ul id="news-lis" class="news-lis">
+                    @if($request->province == 'guangdong' && $request->city == 76 || $request->city == 77)
+                    <li class="clearfix">
+                        <div class="new-content">
+                            <a href="{{ route('topices.show',['topice'=>63356])}}" class="title"> <span class="glyphicon glyphicon-pushpin" style="margin-right:10px;"></span> 广州深圳佛山实力第一经纪人靠谱鸡头</a>
+                             <div class="flex_img">
+                                <p>经纪推荐，信息靠谱，约会安全，星级酒店或者高端公寓开课，安全有保障,有高颜值的模特、空姐、大学生、欧美洋酒、国产普通的美少女、少妇 双胞胎;按档次标价，各种类型都有、高挑模特、清纯萝莉等等</p>
+                                <p>
+                                    <a href="{{ route('topices.show',['topice'=>63356]) }}" >
+                                       <img src="https://seguanjia.cc/uploads/upload/images/2021-01-19-10-26-04.jpg" class="img-thumbnail" style="max-width:28% !important;margin: 3px;">
+                                    </a>
+                                    <a href="{{ route('topices.show',['topice'=>63356]) }}" >
+                                       <img src="https://seguanjia.cc/uploads/upload/images/2021-01-19-10-26-13.jpg" class="img-thumbnail" style="max-width:28% !important;margin: 3px;">
+                                    </a>
+                                    <a href="{{ route('topices.show',['topice'=>63356]) }}" >
+                                       <img src="https://seguanjia.cc/uploads/upload/images/2021-01-19-10-26-21.jpg" class="img-thumbnail" style="max-width:28% !important;margin: 3px;">
+                                    </a>
+                                    <a href="{{ route('topices.show',['topice'=>63356]) }}" >
+                                       <img src="https://seguanjia.cc/uploads/upload/images/2021-01-19-10-26-27.jpg" class="img-thumbnail" style="max-width:28% !important;margin: 3px;">
+                                    </a>
+                                </p>
+                                <a href="javascript:;"><span class="badge badge-primary">莞式服务一条龙</span></a>
+                                <a href="javascript:;"><span class="badge badge-primary">全套</span></a>
+                                <a href="javascript:;"><span class="badge badge-primary">kb</span></a>
+                                <a href="javascript:;"><span class="badge badge-primary">舌吻</span></a>
+                                <a href="javascript:;"><span class="badge badge-primary">69互舔</span></a>
+                                <a href="javascript:;"><span class="badge badge-primary">毒龙</span></a>
+                                <p>分类: <a  style="color:#333;" href="">高端外围</a></p>
+                            </div>
+                            <div class="tool">
+                                <span title="地区"><i class="fa fa-paper-plane" aria-hidden="true"></i>广东 - 广州(深圳)</span>
+                                {{-- <span title="浏览数"><i class="fa fa-eye fa-lg"></i></span> --}}
+                                {{-- <span title="推荐数"><i class="fa fa-thumbs-up"></i> 0</span> --}}
+                                <span title="信息日期"><i class="fa fa-clock-o"></i>2021-01-19</span>
+                            </div>
+                        </div>
+                    </li>
+                    @endif
                     @foreach($topices as $topice)
                     <li class="clearfix">
                         <div class="new-content">
