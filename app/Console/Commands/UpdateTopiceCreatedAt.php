@@ -20,7 +20,7 @@ class UpdateTopiceCreatedAt extends Command
      *
      * @var string
      */
-    protected $description = '更新随机1000条帖子发帖时间';
+    protected $description = '更新随机帖子发帖时间';
 
     /**
      * Create a new command instance.
@@ -40,15 +40,12 @@ class UpdateTopiceCreatedAt extends Command
     public function handle(Topice $topice)
     {
         $this->info('start');
-        Topice::inRandomOrder()
-                    ->where('is_check',true)
-                    ->take(1000)
-                    ->chunkById(100,function($topices){
-                            foreach ($topices as $key => $topice) {
-                                $topice->created_at = Carbon::now()->toDateTimeString();
-                                $topice->save();
-                            }
-                    });
+        Topice::chunkById(100,function($topices){
+                foreach ($topices as $key => $topice) {
+                    $topice->created_at = Carbon::now()->toDateTimeString();
+                    $topice->save();
+                }
+        });
         $this->info('end');
     }
 }

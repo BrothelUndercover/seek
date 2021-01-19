@@ -34,9 +34,10 @@ class TopiceController extends AdminController
         $grid = new Grid(new Topice());
 
         $grid->quickSearch('title','excerpt','city','county','province');
-        // $grid->fixColumns(3);
+        // $grid->fixColumns(2);
+        $grid->model()->orderBy('id', 'desc');
         $grid->column('id', __('序号'))->sortable();
-        $grid->column('title', __('标题'));
+        $grid->column('title', __('标题'))->width(100)->limit(20);
         $grid->column('is_check',__('审核'))->using(['1'=>'审核通过','0'=>'未审核'])->label([1=>'success',0 => 'default']);
         $grid->column('excerpt', __('摘要'))->display(function($excerpt){
             return \Str::limit($excerpt,10);
@@ -51,7 +52,7 @@ class TopiceController extends AdminController
             return City::find($countyid)->name;
         });
         $grid->column('contact', __('联系'))->width(100)->limit(30);
-        $grid->column('consumer_price', __('消费介绍'));
+        $grid->column('consumer_price', __('消费介绍'))->width(60)->limit(20);
         $grid->column('body', __('具体描述'))->hide();
         $grid->column('user_id', __('发帖人'))->display(function($userid){
             return User::find($userid)->name;
@@ -151,8 +152,7 @@ class TopiceController extends AdminController
         $form->number('rating', __('星级好评'))->default(10);
         $form->editor('body', __('具体描述'));
         $form->switch('is_check','审核');
-        // $form->image('picture', __('封面'))->sortable()->removable();
-        $form->multipleImage('pictures', __('照片集'))->sortable()->removable();
+        $form->multipleImage('pictures', __('照片集'))->sortable()->removable()->uniqueName();
 
         return $form;
     }

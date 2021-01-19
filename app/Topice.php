@@ -72,9 +72,9 @@ class Topice extends Model
     {
         parent::boot();
         static::saving(function($model){
-            if ($model->picturesition) {
+            if ($model->pictures) {
                 $model->pictures = array_map(function($item){
-                   return  '/'.$item;
+                   return '/uploads/'.$item;
                 },$model->pictures);
             }
         });
