@@ -91,7 +91,7 @@
                         <div class="new-content">
                             <a href="{{ route('topices.show',['topice'=>63356])}}" class="title"> <span class="glyphicon glyphicon-pushpin" style="margin-right:10px;"></span> 广州深圳佛山实力第一经纪人靠谱鸡头</a>
                              <div class="flex_img">
-                                <p>经纪推荐，信息靠谱，约会安全，星级酒店或者高端公寓开课，安全有保障,有高颜值的模特、空姐、大学生、欧美洋酒、国产普通的美少女、少妇 双胞胎;按档次标价，各种类型都有、高挑模特、清纯萝莉等等</p>
+                                <p>经纪推荐，信息靠谱，约会安全，微信:yql2198343719,星级酒店或者高端公寓开课，安全有保障,有高颜值的模特、空姐、大学生、欧美洋酒、国产普通的美少女、少妇 双胞胎;按档次标价，各种类型都有、高挑模特、清纯萝莉等等</p>
                                 <p>
                                     <a href="{{ route('topices.show',['topice'=>63356]) }}" >
                                        <img src="https://seguanjia.cc/uploads/upload/images/2021-01-19-10-26-04.jpg" class="img-thumbnail" style="max-width:28% !important;margin: 3px;">
