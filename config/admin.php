@@ -62,7 +62,7 @@ return [
 
         'namespace' => 'App\\Admin\\Controllers',
 
-        'middleware' => ['web', 'admin','whiteList'],
+        'middleware' => ['web', 'admin'],
     ],
 
     /*

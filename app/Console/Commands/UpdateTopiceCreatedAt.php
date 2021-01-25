@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Topice;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class UpdateTopiceCreatedAt extends Command
 {
@@ -37,13 +38,12 @@ class UpdateTopiceCreatedAt extends Command
      *
      * @return mixed
      */
-    public function handle(Topice $topice)
+    public function handle()
     {
         $this->info('start');
-        Topice::chunkById(100,function($topices){
+        DB::table('topices')->orderBy('id')->chunk(300,function($topices){
                 foreach ($topices as $key => $topice) {
-                    $topice->created_at = Carbon::now()->toDateTimeString();
-                    $topice->save();
+                    DB::table('topices')->update(['created_at'=> Carbon::now()->toDateTimeString()]);
                 }
         });
         $this->info('end');
