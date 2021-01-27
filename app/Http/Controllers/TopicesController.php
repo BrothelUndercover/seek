@@ -19,7 +19,7 @@ class TopicesController extends Controller
         $this->middleware('auth',['only' => ['create','store','uploadImage']]);
     }
 
-    public function index(Request $request)
+    public function index(Request $request,Category $category)
     {
         $areaSpell = $request->province;
         $cateId = $request->category ?? false;
@@ -38,7 +38,7 @@ class TopicesController extends Controller
                     })
                     ->where('is_check',true)
                     ->paginate(15);
-        $categories = Category::all();
+        $categories = $category->getCategory();
 
         return view('topices.index',compact('topices','area','categories','request'));
     }
@@ -51,9 +51,9 @@ class TopicesController extends Controller
     }
 
 
-    public function create(Request $request)
+    public function create(Request $request,Category $category)
     {
-        $categories = Category::where('status',true)->get();
+        $categories = $category->getCategory();
         $provinces = City::where('pid',1)->get();
         $tabs = Tab::where('status',true)->get();
         $provin = $request->provi;

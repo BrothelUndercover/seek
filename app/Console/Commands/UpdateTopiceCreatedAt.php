@@ -41,11 +41,15 @@ class UpdateTopiceCreatedAt extends Command
     public function handle()
     {
         $this->info('start');
-        DB::table('topices')->orderBy('id')->chunk(300,function($topices){
-                foreach ($topices as $key => $topice) {
-                    DB::table('topices')->update(['created_at'=> Carbon::now()->toDateTimeString()]);
-                }
-        });
+        // Db::table('topices')->orderBy('id')->chunk(300,function($topices){
+        //         foreach ($topices as $key => $topice) {
+        //             DB::table('topices')->update(['created_at'=> Carbon::now()->toDateTimeString()]);
+        //         }
+        // });
+        $topices = DB::table('topices')->inRandomOrder()->take(300)->get();
+            foreach ($topices as $key => $topice) {
+                DB::table('topices')->update(['created_at'=> Carbon::now()->toDateTimeString()]);
+        }
         $this->info('end');
     }
 }

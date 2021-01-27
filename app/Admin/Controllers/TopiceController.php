@@ -12,6 +12,7 @@ use Encore\Admin\Show;
 use App\City;
 use App\Category;
 use App\User;
+use App\Tab;
 use App\Jobs\ImportEs;
 
 
@@ -144,6 +145,7 @@ class TopiceController extends AdminController
         $form->select('county','县/区')->options(function($id){
             return City::where('id',$id)->pluck('name','id');
         })->rules('required');
+        $form->multipleSelect('tabs','标签')->options(Tab::all()->pluck('tabname','id'));
         $form->text('contact', __('联系'));
         $form->text('contact_address', __('联系地址'));
         $form->text('consumer_price', __('消费介绍'));

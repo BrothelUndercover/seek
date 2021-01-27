@@ -51,7 +51,7 @@ class MemberShipController extends AdminController
         $form->text('viptype_name', __('会员类型'));
         $form->text('identifier',__('标识'));
         $form->decimal('price', __('价格'))->default(0.00);
-        $form->decimal('cardurl', __('发卡地址'));
+        $form->url('cardurl', __('发卡地址'));
         $form->text('description', __('描述'));
 
         return $form;

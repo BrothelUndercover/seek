@@ -115,7 +115,7 @@ class MemberController extends AdminController
         $form->switch('user_status', __('用户状态'))->default(1);
         $form->number('credit', __('积分'))->default(0);
         $form->select('vip_type')->options($this->vipType);
-        $form->datetime('vip_expire_at', __('会员到期时间'))->default(date('Y-m-d H:i:s'));
+        $form->datetime('vip_expire_at', __('会员到期时间'))->default(now());
         $form->textarea('introdction', __('简介'));
         $form->text('sharecode', __('分享码'))->value(Str::random(6));
         $form->datetime('last_actived_at', __('最后登录时间'))->default(date('Y-m-d H:i:s'));

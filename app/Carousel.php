@@ -16,7 +16,7 @@ class Carousel extends Model
         parent::boot();
         static::saving(function($model){
             $model->image = '/uploads/'.$model->image;
-            Cache::forget($this->carouselCacheKey);
+            Cache::forget($model->carouselCacheKey);
         });
     }
 

@@ -20,18 +20,18 @@ class UsersController extends Controller
     {
         $this->middleware('auth',['only' =>['show']]);
 
-        $this->vipTime = ['1' => 1,'2'=> 3 ,'3'=> 12, '4' => '240'];
+        $this->vipTime = ['1' => 1,'2'=> 3 ,'3'=> 12, '4' => 120];
     }
 
-    public function show(Request $request,User $user)
+    public function show(Request $request,User $user,Membership $membership)
     {
-        $ships = Membership::all();
+        $ships = $membership->getShips();
         $user = \Auth()->user();
         $orders = $user->orders;
         return view('users.show',['type'=>$request->stype,'ships' => $ships,'user'=> $user,'orders' => $orders]);
     }
 
-    public function checkSecret(Request $request)
+    public function checkSecret(Request $request,Membership $membership)
     {
         $this->validate($request, [
             'secret' => 'required',
@@ -39,7 +39,7 @@ class UsersController extends Controller
         $secret = $request->secret;
         $arr = explode('-',$secret);
         try {
-           $ship_id = Membership::where('identifier',$arr[0])->value('id');
+           $ship_id = $membership->getShips()->firstWhere('identifier',$arr[0])->id;
            $card =  Card::where(['secret' => $secret,'ship_id'=> $ship_id,'status'=> false])->first();
            if ($card) {
                  Order::firstOrCreate([
