@@ -33,9 +33,9 @@ class PagesController extends Controller
         return response()->json(['topices' => '','code' => -1]);
     }
     //地区
-    public function region()
+    public function region(City $city)
     {
-        $provinces = City::with('provTopices')->where('pid',1)->get();//省份
+        $provinces = $city->where('pid',1)->get();//省份
         return view('pages.region',compact('provinces'));
     }
 

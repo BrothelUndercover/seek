@@ -49,7 +49,7 @@ class UpdateTopiceCreatedAt extends Command
         $topices = DB::table('topices')->inRandomOrder()->take(300)->get();
             foreach ($topices as $key => $topice) {
                 DB::table('topices')->update(['created_at'=> Carbon::now()->toDateTimeString()]);
-        }
+            }
         $this->info('end');
     }
 }

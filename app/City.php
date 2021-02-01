@@ -9,6 +9,7 @@ class City extends Model
 {
     protected $hotCityCacheKey = 'hotcity';
 
+
     public function child()
     {
         return $this->hasMany(self::class,'pid');
@@ -45,5 +46,12 @@ class City extends Model
             return self::with('upperLevel')->where('hot',true)->get();
         }
         return Cache::get($this->hotCityCacheKey);
+    }
+
+    public function getCachedProvinceTopicesCountAttribute()
+    {
+        return Cache::remember('topices_province_counts:'.$this->spell, 60*60*24, function () {
+            return $this->provTopices->count();
+        });
     }
 }

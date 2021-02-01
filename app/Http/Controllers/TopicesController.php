@@ -19,12 +19,12 @@ class TopicesController extends Controller
         $this->middleware('auth',['only' => ['create','store','uploadImage']]);
     }
 
-    public function index(Request $request,Category $category)
+    public function index(Request $request,Category $cate)
     {
         $areaSpell = $request->province;
         $cateId = $request->category ?? false;
         $cityId = $request->city ?? false;;
-        $countyId = $request->county ?? false;;
+        $countyId = $request->county ?? false;
         $area = City::with('childRecursive')->where('spell',$areaSpell)->first();
         $topices = $area->provTopices()
                     ->when($cateId,function(Builder $query) use ($cateId){
@@ -38,7 +38,7 @@ class TopicesController extends Controller
                     })
                     ->where('is_check',true)
                     ->paginate(15);
-        $categories = $category->getCategory();
+        $categories = $cate->getCategory();
 
         return view('topices.index',compact('topices','area','categories','request'));
     }

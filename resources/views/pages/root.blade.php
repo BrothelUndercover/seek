@@ -21,7 +21,8 @@
 .more-button.active.focus {outline: none;border-color: transparent;box-shadow:none;}
 #loading img{margin: 0 auto}
 .pHot a {font-weight: bold;margin: 0px 5px;color: #333;}
-.pHot{font-size:13px;line-height: 25px;}
+.pHot{word-break: keep-all;word-wrap: break-word;font-size:13px;line-height: 25px;}
+.flex_img>p:first-child{overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;}
 </style>
 <div class="container in_top index">
       @include('common._message')
@@ -40,9 +41,9 @@
             </form>
              <p class="pHot">
                 <span class="btn btn-danger btn-sm">热门城市:</span>
-                @foreach($hotCities as $city)
-                    <a href="{{ route('topices.index',['province'=> $city->upperLevel->spell,'category'=> 0,'city'=>$city->id]) }}">{{ $city->name }}</a>
-                @endforeach
+                    @foreach($hotCities as $city)
+                        <a href="{{ route('topices.index',['province'=> $city->upperLevel->spell,'category'=> 0,'city'=>$city->id]) }}">{{ $city->name }}</a>
+                    @endforeach
             </p>
         </div>
         <div class="dowebok str_wrap" style="height: 250px;">

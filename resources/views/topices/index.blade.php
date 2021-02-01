@@ -3,6 +3,9 @@
 @section('title',$area->name . '楼凤信息')
 
 @section('content')
+<style>
+.flex_img>p:first-child{overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;}
+</style>
 <div class="container con_padding con_la in_top">
     <div class="con_left content_left">
         <ul class="breadcrumb dh">
@@ -24,7 +27,7 @@
                 <h1 class="title">{{ $area->name }} 性息分享</h1>
                 <div class="info clearfix">
                     <div class="info-content">
-                        <p class="num">{{ count($area->provTopices) }}</p>
+                        <p class="num">{{ $area->cached_province_topices_count }}</p>
                         <span class="unit">信息分享 <i class="fa fa-angle-right"></i></span>
                     </div>
                     <div class="info-content">

@@ -30,7 +30,7 @@
                             <div class="flex_box">
                                 <div class="C-word">
                                     <a href="{{ route('topices.index',['province'=> $province->spell])  }}"> <h4><i class="fa fa-share-alt" aria-hidden="true"></i>分享区</h4></a>
-                                     共有<b style="color: #f30">{{ count($province->provTopices) }}</b>条信息<br>
+                                     共有<b style="color: #f30">{{ $province->cached_province_topices_count }}</b>条信息<br>
                                 </div>
                             </div>
                        {{--      <div class="flex_box">

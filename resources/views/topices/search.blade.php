@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title', setting('seo_description','分享楼凤兼职，酒店会所，桑拿洗浴，全国楼凤'))
 @section('content')
+<style>
+.flex_img>p:first-child{overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;}
+</style>
 <div class="container con_padding con_la in_top">
     <div class="con_left content_left">
         <ul class="breadcrumb dh">
