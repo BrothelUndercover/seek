@@ -31,7 +31,15 @@
                         <span class="unit">信息分享 <i class="fa fa-angle-right"></i></span>
                     </div>
                     <div class="info-content">
-                        <a href="{{ route('topices.create',['provi'=>$area->id]) }}" class="btn btn-success">发布</a>
+                    @guest
+                        <a href="javascript:;" class="btn btn-success topcie-create">发布</a>
+                    @else
+                        @if(Auth::user()->vip_type && Auth::user()->vip_expire_at > now()->toDateTimeString())
+                            <a href="{{ route('topices.create',['provi'=>$area->id]) }}" class="btn btn-success">发布</a>
+                        @else
+                            <a href="javascript:;" class="btn btn-success topcie-create">发布</a>
+                        @endif
+                    @endguest
                     </div>
                 </div>
                 <div class="desc">
@@ -173,4 +181,9 @@
 @endsection
 
 @section('scripts')
+<script>
+    $('.topcie-create').click(function(){
+        layer.alert('您还不是会员,发帖仅限会员!', {icon: 5});
+    })
+</script>
 @endsection

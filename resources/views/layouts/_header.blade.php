@@ -46,7 +46,11 @@
                 </div>
                 @else
                  <div class="myshare">
-                    <button class="btn btn-share" onclick="window.location='{{ route('topices.create',['provi'=> 2]) }}'">写分享</button>
+                    @if(Auth::user()->vip_type && Auth::user()->vip_expire_at > now()->toDateTimeString())
+                        <button class="btn btn-share" onclick="window.location='{{ route('topices.create',['provi'=> 2]) }}'">写分享</button>
+                    @else
+                        <button class="btn btn-share" onclick="topcieCreate()">写分享</button>
+                    @endif
                 </div>
                 <div class="user_img_box">
                     <img src="{{ Auth::user()->avatar }}" alt="头像">
@@ -109,3 +113,8 @@
         </div>
     </nav>
 </div>
+<script>
+    function topcieCreate(){
+        layer.alert('您还不是会员,发帖仅限会员!', {icon: 5});
+    }
+</script>
