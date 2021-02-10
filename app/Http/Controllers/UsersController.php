@@ -39,21 +39,22 @@ class UsersController extends Controller
         $secret = $request->secret;
         $arr = explode('-',$secret);
         try {
-           $ship_id = $membership->getShips()->firstWhere('identifier',$arr[0])->id;
-           $card =  Card::where(['secret' => $secret,'ship_id'=> $ship_id,'status'=> false])->first();
+           $ship = $membership->getShips()->firstWhere('identifier',$arr[0])->first();
+           $card =  Card::where(['secret' => $secret,'ship_id'=> $ship->id,'status'=> false])->first();
            if ($card) {
                  Order::firstOrCreate([
                     'order_id' => date('ymd').strtotime('now').\Auth::id(),
-                    'ship_id' => $ship_id,
+                    'ship_id' => $ship->id,
                     'user_id' => \Auth::id(),
+                    'amount'  => $ship->price,
                     'card_id' => $card->id,
                     'status'  => 1,
                     'pay_time' => \Carbon\Carbon::now(),
                 ]);
-                User::find(\Auth::id())->update(['vip_type' => $ship_id,'vip_expire_at'=>\Carbon\Carbon::now()->addMonth($this->vipTime[$ship_id])]);
+                User::find(\Auth::id())->update(['vip_type' => $ship->id,'vip_expire_at'=>\Carbon\Carbon::now()->addMonth($this->vipTime[$ship->id])]);
                 $card->status = true;
                 $card->save();
-                return redirect()->to(route('users.show',['stype'=>'vip']))->with('success','激活成功');
+                return redirect()->to(route('users.show',['stype'=>'order']))->with('success','激活成功');
            }
            return redirect()->to(route('users.show',['stype'=>'self']))->with('danger','秘钥错误,请联系客服');
         } catch (Exception $e) {

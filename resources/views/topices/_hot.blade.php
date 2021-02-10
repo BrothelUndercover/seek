@@ -6,7 +6,7 @@
 <ul class="tj_list">
     @foreach($hotTopices as $hot)
     <li>
-        <a href="{{ route('topices.show',['topice'=>$hot->id]) }}">{{ $hot->title}}</a>
+        <a href="{{ route('topices.show',[$hot]) }}">{{ $hot->title}}</a>
         <p><span>浏览：{{ $hot->view_count }}</span><span>日期：{{ $hot->created_at }}</span></p>
     </li>
     @endforeach

@@ -21,13 +21,13 @@
                     @foreach($topices as $topice)
                     <li class="clearfix">
                         <div class="new-content">
-                            <a href="{{ route('topices.show',[$topice->id])}}" class="title">{{ $topice->title }}</a>
+                            <a href="{{ route('topices.show',[$topice])}}" class="title">{{ $topice->title }}</a>
                             <div class="flex_img">
                                 <p>{{ preg_replace('/简介：/','&nbsp;&nbsp;',$topice->excerpt) }}</p>
                                 <p>
                                     @if($topice->pictures)
                                         @foreach($topice->pictures as $picture)
-                                        <a href="{{ route('topices.show',[$topice->id]) }}" >
+                                        <a href="{{ route('topices.show',[$topice]) }}" >
                                             <img src="{{ $picture }}" class="img-thumbnail" style="max-width:28% !important;margin: 3px;">
                                         </a>
                                         @endforeach

@@ -59,10 +59,8 @@ class MemberController extends AdminController
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('更新时间'));
         $grid->filter(function (Grid\Filter $filter) {
-            $filter->equal('id','序号');
             $filter->equal('name','用户名');
             $filter->equal('email','邮箱');
-
         });
         return $grid;
     }

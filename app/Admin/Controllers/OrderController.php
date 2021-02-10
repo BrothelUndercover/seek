@@ -29,10 +29,13 @@ class OrderController extends AdminController
     {
         $grid = new Grid(new Order());
 
-        $grid->column('id', __('Id'))->sortable();
+        $grid->column('id', __('Id'))->sortable()->totalRow('合计');
         $grid->column('order_id', __('订单号'));
         $grid->column('ship_id', __('套餐'))->display(function($ship_id){
             return  Membership::find($ship_id)->viptype_name;
+        });
+        $grid->column('amount',__('金额'))->totalRow(function ($amount) {
+            return "<span class='text-danger text-bold'><i class='fa fa-yen'></i>{$amount} 元</span>";
         });
         $grid->column('user_id', __('会员'))->display(function($user_id){
             return User::find($user_id)->name;
@@ -45,6 +48,7 @@ class OrderController extends AdminController
         $grid->column('pay_time', __('支付时间'));
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('更新时间'));
+        $grid->perPages([1,2,3]);
         $grid->disableCreateButton();
         $grid->disableActions();
         $grid->filter(function ($filter) {
@@ -54,6 +58,7 @@ class OrderController extends AdminController
             $filter->equal('user_id','会员');
             $filter->equal('card_id','卡密');
             $filter->like('mark','备注');
+            $filter->between('created_at','创建时间')->datetime();
         });
         return $grid;
     }

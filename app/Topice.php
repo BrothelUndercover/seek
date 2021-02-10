@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topice extends Model
 {
-    use Searchable;
+    use Searchable,Handlers\Traits\HashIdHelper;
 
     protected $indexConfigurator = Elastic\TopicesIndexConfigurator::class;
 

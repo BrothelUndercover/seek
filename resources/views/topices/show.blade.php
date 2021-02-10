@@ -162,7 +162,7 @@
             <ul class="tj_list">
                 @foreach($topices as $topice)
                 <li>
-                    <a href="{{ route('topices.show',[$topice->id]) }}">{{ $topice->title }}</a>
+                    <a href="{{ route('topices.show',[$topice]) }}">{{ $topice->title }}</a>
                     <p><span>浏览：{{ $topice->view_count }}</span><span>日期：{{ $topice->created_at->diffForHumans() }}</span></p>
                 </li>
                 @endforeach

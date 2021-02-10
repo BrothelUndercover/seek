@@ -129,13 +129,13 @@
                     @foreach($topices as $topice)
                     <li class="clearfix">
                         <div class="new-content">
-                            <a href="{{ route('topices.show',[$topice->id])}}" class="title">{{ $topice->title }}</a>
+                            <a href="{{ route('topices.show',[$topice])}}" class="title">{{ $topice->title }}</a>
                              <div class="flex_img">
                                 <p>{{ preg_replace('/简介：/','&nbsp;&nbsp;',$topice->excerpt) }}</p>
                                 <p>
                                     @if($topice->pictures)
                                         @foreach($topice->pictures as $picture)
-                                        <a href="{{ route('topices.show',[$topice->id]) }}" >
+                                        <a href="{{ route('topices.show',[$topice]) }}" >
                                            <img src="{{ $picture }}" class="img-thumbnail" style="max-width:28% !important;margin: 3px;">
                                         </a>
                                         @endforeach
@@ -149,7 +149,7 @@
                             <div class="tool">
                                 <span title="地区"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{ $topice->cityArea->name }} - {{ $topice->countyArea->name }}</span>
                                 <span title="浏览数"><i class="fa fa-eye fa-lg"></i> {{ $topice->view_count }}</span>
-                                <span title="评论数"><i class="fa fa-comment comment-lg"></i> {{ count($topice->replies) }}</span>
+                               {{--  <span title="评论数"><i class="fa fa-comment comment-lg"></i> {{ count($topice->replies) }}</span> --}}
                                 {{-- <span title="推荐数"><i class="fa fa-thumbs-up"></i> 0</span> --}}
                                 <span title="信息日期"><i class="fa fa-clock-o"></i> {{ $topice->created_at->diffForHumans() }}</span>
                             </div>

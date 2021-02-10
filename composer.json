@@ -31,7 +31,8 @@
         "phpdocumentor/reflection-common": "^1.0",
         "phpdocumentor/reflection-docblock": "^3.0",
         "spatie/laravel-query-builder": "^3.3",
-        "tymon/jwt-auth": "^1.0"
+        "tymon/jwt-auth": "^1.0",
+        "vinkla/hashids": "7.0.0"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
