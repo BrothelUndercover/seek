@@ -23,7 +23,7 @@ Route::middleware('throttle:60,1')->group(function () {
     //帖子相关
     Route::get('topices/create/{provi?}','TopicesController@create')->name('topices.create');
     Route::get('topice/{province}/{category?}/{city?}/{county?}','TopicesController@index')->name('topices.index');
-    Route::get('topices/{topice}','TopicesController@show')->name('topices.show');
+    Route::get('topices/{topice}/{slug?}','TopicesController@show')->name('topices.show');
     Route::post('topices','TopicesController@store')->name('topices.store');
     Route::get('topices/{topice?}/edit','TopicesController@edit')->name('topices.edit');
     Route::patch('topices','TopicesController@update')->name('topices.update');
@@ -47,3 +47,5 @@ Route::middleware('throttle:60,1')->group(function () {
 
     Route::post('uploadImage','TopicesController@uploadImage')->name('topices.uploade_image');
 });
+   Route::get('sitemap', 'SitemapController@index')->name('sitemap.index');
+

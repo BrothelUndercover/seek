@@ -48,7 +48,6 @@ class OrderController extends AdminController
         $grid->column('pay_time', __('支付时间'));
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('更新时间'));
-        $grid->perPages([1,2,3]);
         $grid->disableCreateButton();
         $grid->disableActions();
         $grid->filter(function ($filter) {

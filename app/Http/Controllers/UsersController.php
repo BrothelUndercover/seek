@@ -56,7 +56,7 @@ class UsersController extends Controller
                 $card->save();
                 return redirect()->to(route('users.show',['stype'=>'order']))->with('success','激活成功');
            }
-           return redirect()->to(route('users.show',['stype'=>'self']))->with('danger','秘钥错误,请联系客服');
+           return redirect()->to(route('users.show',['stype'=>'self']))->with('danger','卡密不存在,请联系客服');
         } catch (Exception $e) {
             Log::info($e->getMessage());
         }

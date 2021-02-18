@@ -7,10 +7,11 @@ use App\City;
 use App\Topice;
 use App\User;
 use App\Carousel;
+use App\Link;
 
 class PagesController extends Controller
 {
-    public function root(Request $request, Topice $topice, User $user, City $city,Carousel $carousel)
+    public function root(Request $request, Topice $topice,Link $link,Carousel $carousel,City $city)
     {
         $topices = $topice->withOrder('default')
                           ->with('user','proviArea','cityArea','countyArea','category','tabs')
@@ -19,7 +20,8 @@ class PagesController extends Controller
                           ->get();
          $hotCities = $city->getHotCitys();
          $carousels = $carousel->getCarousel();
-        return view('pages.root',compact('topices','topice','hotCities','carousels'));
+         $links = $link->getLinksCached();
+        return view('pages.root',compact('topices','topice','hotCities','carousels','links'));
     }
 
     public function pageRoot(Request $request,Topice $topice){

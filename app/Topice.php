@@ -4,6 +4,7 @@ namespace App;
 
 use ScoutElastic\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Vinkla\Hashids\Facades\Hashids;
 
 class Topice extends Model
 {
@@ -170,5 +171,10 @@ class Topice extends Model
     public static function scopeTopiceRelated($query,$cityid)
     {
         return $query->where('city',$cityid)->where('is_check',true)->take(25);
+    }
+
+    public function link($params = [])
+    {
+        return route('topices.show', array_merge([Hashids::encode($this->id),$this->title], $params));
     }
 }

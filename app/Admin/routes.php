@@ -23,4 +23,5 @@ Route::group([
     $router->resource('cards', CardController::class);
     $router->resource('orders', OrderController::class);
     $router->resource('ip-lists', IpListController::class);
+    $router->resource('links', LinkController::class);
 });

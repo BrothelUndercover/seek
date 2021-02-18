@@ -125,7 +125,11 @@
                 </div>
             </div>
           <ul class="tj_list">
-                <li><a href="http://www.lingdudaohang.com/">零度导航</a></li>
+            @foreach($links as $link)
+                <li>
+                    <a style="height:auto;" href="{{ $link->link }}"><img width="120" src="{{ '/'.$link->img }}" alt="">{{ $link->title }}</a>
+                </li>
+            @endforeach
             </ul>
         </div>
     </div>

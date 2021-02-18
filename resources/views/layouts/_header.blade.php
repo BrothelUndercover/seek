@@ -98,13 +98,10 @@
                             </a> --}}
                         </li>
                         <li>
-                            <form action="{{ route('logout') }}" method="POST" onsubmit="return confirm('你确定退出吗?');">
-                                 @csrf
-                                <button style="border: none;background: none;color: #333;font-size: 14px;padding-left:9pt;" type="submit">
-                                    <i style="color: #ff634f;margin-right:5px;width:20px;" class="fa fa-sign-out"></i>
-                                    退出
-                                </button>
-                            </form>
+                            <button onclick="delUser()" style="border: none;background: none;color: #333;font-size: 14px;padding-left:9pt;" type="submit">
+                                <i style="color: #ff634f;margin-right:5px;width:20px;" class="fa fa-sign-out"></i>
+                                退出
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -116,5 +113,17 @@
 <script>
     function topcieCreate(){
         layer.alert('您还不是会员,发帖仅限会员!', {icon: 5});
+    }
+    function delUser(){
+      layer.confirm('您确定要退出？', {  // 使用layer.js确认弹窗
+        btn: ['确定', '取消'],
+      }, function() {            // 当确定时执行
+        $.post("{{ route('logout') }}", {  // 网址、数据、成功后操作
+          "_token": "{{ csrf_token() }}"
+        }, function(data) {
+            layer.msg('退出成功', { icon: 6});
+            location.href = "";
+        });
+      }, function() {});
     }
 </script>
