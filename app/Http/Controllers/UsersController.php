@@ -39,7 +39,7 @@ class UsersController extends Controller
         $secret = $request->secret;
         $arr = explode('-',$secret);
         try {
-           $ship = $membership->getShips()->firstWhere('identifier',$arr[0])->first();
+           $ship = $membership->getShips()->firstWhere('identifier','payalllife');
            $card =  Card::where(['secret' => $secret,'ship_id'=> $ship->id,'status'=> false])->first();
            if ($card) {
                  Order::firstOrCreate([

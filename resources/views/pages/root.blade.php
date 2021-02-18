@@ -127,7 +127,7 @@
           <ul class="tj_list">
             @foreach($links as $link)
                 <li>
-                    <a style="height:auto;" href="{{ $link->link }}"><img width="120" src="{{ '/'.$link->img }}" alt="">{{ $link->title }}</a>
+                    <a style="height:auto;" href="{{ $link->link }}"><img width="120" src="" alt="">{{ $link->title }}</a>
                 </li>
             @endforeach
             </ul>
