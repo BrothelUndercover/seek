@@ -178,7 +178,6 @@
                             <div class="tool">
                                 <span title="地区"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;`+data.topices.data[index].provi_area.name+` -`+data.topices.data[index].city_area.name+`</span>
                                 <span title="浏览数"><i class="fa fa-eye fa-lg"></i>&nbsp;`+data.topices.data[index].view_count+`</span>
-                                <span title="评论数"><i class="fa fa-comment comment-lg"></i>&nbsp;`+data.topices.data[index].comment_count+`</span>
                                 <span title="发帖时间"><i class="fa fa-clock-o"></i>&nbsp;`+ moment().to(moment(data.topices.data[index].created_at))+`</span>
                             </div>
                         </div>

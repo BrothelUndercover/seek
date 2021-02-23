@@ -45,9 +45,9 @@
 @section('scripts')
 <script>
     $(document).ready(function(){
-        if ($(window).width() > 760 ) {
-            $('.footer').css({position:'fixed',bottom:'0',width:'100%'});
-        }
+        // if ($(window).width() > 760 ) {
+        //     $('.footer').css({position:'fixed',bottom:'0',width:'100%'});
+        // }
 
         var copyBtn = new Clipboardjs('#btncopy');
         copyBtn.on("success", function (e) {

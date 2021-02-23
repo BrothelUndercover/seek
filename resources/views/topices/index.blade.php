@@ -97,8 +97,8 @@
             <!-- 下部内容1 -->
             <div class="list-container" style="display: block">
                 <ul id="news-lis" class="news-lis">
-                    @if($request->province == 'guangdong' && $request->city == 76 || $request->city == 77)
-                    <li class="clearfix">
+                    {{-- @if($request->province == 'guangdong' && $request->city == 76 || $request->city == 77) --}}
+              {{--       <li class="clearfix">
                         <div class="new-content">
                             <a href="{{ route('topices.show',['topice'=>63356])}}" class="title"> <span class="glyphicon glyphicon-pushpin" style="margin-right:10px;"></span> 广州深圳佛山实力第一经纪人靠谱鸡头</a>
                              <div class="flex_img">
@@ -126,14 +126,14 @@
                                 <p>分类: <a  style="color:#333;" href="">高端外围</a></p>
                             </div>
                             <div class="tool">
-                                <span title="地区"><i class="fa fa-paper-plane" aria-hidden="true"></i>广东 - 广州(深圳)</span>
+                                <span title="地区"><i class="fa fa-paper-plane" aria-hidden="true"></i>广东 - 广州(深圳)</span> --}}
                                 {{-- <span title="浏览数"><i class="fa fa-eye fa-lg"></i></span> --}}
                                 {{-- <span title="推荐数"><i class="fa fa-thumbs-up"></i> 0</span> --}}
-                                <span title="信息日期"><i class="fa fa-clock-o"></i>2021-01-19</span>
+                        {{--         <span title="信息日期"><i class="fa fa-clock-o"></i>2021-01-19</span>
                             </div>
                         </div>
                     </li>
-                    @endif
+                    @endif --}}
                     @foreach($topices as $topice)
                     <li class="clearfix">
                         <div class="new-content">
