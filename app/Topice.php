@@ -5,6 +5,7 @@ namespace App;
 use ScoutElastic\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Vinkla\Hashids\Facades\Hashids;
+use Illuminate\Support\Str;
 
 class Topice extends Model
 {
@@ -75,6 +76,9 @@ class Topice extends Model
         static::saving(function($model){
             if ($model->pictures) {
                 $model->pictures = array_map(function($item){
+                if (Str::contains($item,'uploads')) {
+                    return $item;
+                }
                    return '/uploads/'.$item;
                 },$model->pictures);
             }

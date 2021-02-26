@@ -47,6 +47,7 @@ class CardController extends AdminController
         $grid->filter(function($filter){
             // 去掉默认的id过滤器
             $filter->disableIdFilter();
+            $filter->equal('secret','卡密');
             $filter->equal('ship_id','套餐')->select(Membership::pluck('viptype_name','id'));
             // 在这里添加字段过滤器
             $filter->equal('status', '状态')->select(['1'=> '已使用','0'=>'未使用']);

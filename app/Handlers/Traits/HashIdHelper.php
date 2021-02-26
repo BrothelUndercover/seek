@@ -21,12 +21,12 @@ trait HashIdHelper
     // 先将参数 decode 为模型id，再调用父类的 resolveRouteBinding 方法
     public function resolveRouteBinding($value)
     {
-        // if (!is_numeric($value)) {
+        if (!is_numeric($value)) {
             $value = current(Hashids::decode($value));
             if (!$value) {
                 return;
             }
-        // }
+        }
         return parent::resolveRouteBinding($value);
     }
 
